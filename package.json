@@ -1,0 +1,19 @@
+{
+  "name": "launchpadeventsplatform",
+  "version": "1.0.0",
+  "description": "## Project Overview",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mongodb": "^6.11.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
