@@ -1,5 +1,4 @@
 # LaunchPadEventsPlatform
-# Events Platform
 
 ## Project Overview
 
