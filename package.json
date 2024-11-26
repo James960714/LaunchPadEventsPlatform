@@ -4,14 +4,16 @@
   "description": "## Project Overview",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "seed": "nodemon ./seeding/seed"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.1",
-    "mongodb": "^6.11.0"
+    "mongodb": "^6.11.0",
+    "mongoose": "^8.8.2"
   },
   "devDependencies": {
     "jest": "^29.7.0"
