@@ -1,10 +1,15 @@
 const {Event} = require('../db/schemaModels')
+const connection = require('../index')
+
 
 exports.fetchAllEvents = () => {
-    console.log('models landed')
-    Event.find({})
-    .then((response)=> {
-        return response
+    return connection()
+    .then(() => {
+        return Event.find({})
+        .lean()
+        .then((response)=> {
+            return response
+        })
     });
 }
 
