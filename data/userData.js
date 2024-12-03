@@ -1,6 +1,5 @@
 const userData = [
     {
-      "userID": 1,
       "firstName": "Alice",
       "lastName": "Johnson",
       "dob": "1985-06-15",
@@ -10,11 +9,10 @@ const userData = [
         "townCity": "London",
         "postCode": "E1 7AA"
       },
-      "eventsAttending": [1, 5, 9],
+      "eventsAttending": ['674d971e5c0a94b4de6377ab', '674d971e5c0a94b4de6377ac', '674d971e5c0a94b4de6377aa'],
       "userType": "Customer"
     },
     {
-      "userID": 2,
       "firstName": "Jack",
       "lastName": "Taylor",
       "dob": "1990-03-22",
@@ -24,11 +22,10 @@ const userData = [
         "townCity": "Manchester",
         "postCode": "M4 5TT"
       },
-      "eventsAttending": [2, 7],
+      "eventsAttending": ['674d971e5c0a94b4de6377ab', '674d971e5c0a94b4de6377ac', '674d971e5c0a94b4de6377aa'],
       "userType": "Customer"
     },
     {
-      "userID": 3,
       "firstName": "Emma",
       "lastName": "Wilson",
       "dob": "2001-12-05",
@@ -38,11 +35,10 @@ const userData = [
         "townCity": "Birmingham",
         "postCode": "B3 3SD"
       },
-      "eventsAttending": [3, 8],
+      "eventsAttending": ['674d971e5c0a94b4de6377ab', '674d971e5c0a94b4de6377ac', '674d971e5c0a94b4de6377aa'],
       "userType": "Customer"
     },
     {
-      "userID": 4,
       "firstName": "Liam",
       "lastName": "Smith",
       "dob": "1973-09-10",
@@ -56,7 +52,6 @@ const userData = [
       "userType": "Staff"
     },
     {
-      "userID": 5,
       "firstName": "Sophia",
       "lastName": "Brown",
       "dob": "1965-04-14",
@@ -66,11 +61,10 @@ const userData = [
         "townCity": "Leeds",
         "postCode": "LS2 9JT"
       },
-      "eventsAttending": [4, 10],
+      "eventsAttending": ['674d971e5c0a94b4de6377ab', '674d971e5c0a94b4de6377ac', '674d971e5c0a94b4de6377aa'],
       "userType": "Customer"
     },
     {
-      "userID": 6,
       "firstName": "Noah",
       "lastName": "White",
       "dob": "1980-11-20",
@@ -80,11 +74,10 @@ const userData = [
         "townCity": "Cardiff",
         "postCode": "CF1 2AB"
       },
-      "eventsAttending": [6, 11],
+      "eventsAttending": ['674d971e5c0a94b4de6377ab', '674d971e5c0a94b4de6377ac', '674d971e5c0a94b4de6377aa'],
       "userType": "Customer"
     },
     {
-      "userID": 7,
       "firstName": "Olivia",
       "lastName": "Harris",
       "dob": "1995-02-13",
@@ -94,11 +87,10 @@ const userData = [
         "townCity": "Edinburgh",
         "postCode": "EH3 6BP"
       },
-      "eventsAttending": [12, 19],
+      "eventsAttending": ['674d971e5c0a94b4de6377ab', '674d971e5c0a94b4de6377ac', '674d971e5c0a94b4de6377aa'],
       "userType": "Customer"
     },
     {
-      "userID": 8,
       "firstName": "James",
       "lastName": "Scott",
       "dob": "1978-07-30",
@@ -112,7 +104,6 @@ const userData = [
       "userType": "Staff"
     },
     {
-      "userID": 9,
       "firstName": "Charlotte",
       "lastName": "Green",
       "dob": "1987-10-08",
@@ -122,11 +113,10 @@ const userData = [
         "townCity": "Newcastle",
         "postCode": "NE1 4AW"
       },
-      "eventsAttending": [14, 18],
+      "eventsAttending": ['674d971e5c0a94b4de6377ab', '674d971e5c0a94b4de6377ac', '674d971e5c0a94b4de6377aa'],
       "userType": "Customer"
     },
     {
-      "userID": 10,
       "firstName": "Benjamin",
       "lastName": "Martin",
       "dob": "1968-01-25",

@@ -13,3 +13,17 @@ exports.fetchAllEvents = () => {
     });
 }
 
+exports.fetchEventById = (_id) => {
+    console.log({_id})
+    return connection()
+    .then(() => {
+        Event.findById({_id})
+        .lean()
+        .then((response) => {
+            console.log(response)
+            return response
+        })
+    })
+    .catch(err)
+}
+

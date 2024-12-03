@@ -1,12 +1,6 @@
 const {Schema, mongoose} = require('mongoose')
 
 const userSchema = new Schema({
-    userID: {
-        type: Number,
-        index: true,
-        unique: true,
-        required: true
-    },
     firstName: {
         type: String,
         required: [true, 'Please enter first name']
@@ -34,7 +28,7 @@ const userSchema = new Schema({
         },
     },
     eventsAttending: {
-        type: [Number],
+        type: [String],
         default: []
     },
     userType: {
@@ -45,12 +39,6 @@ const userSchema = new Schema({
 
 
 const eventsSchema = new Schema ({
-    eventId: {
-        type: Number,
-        index: true,
-        unique: true,
-        required: true
-    },
     name: {
         type: String,
         required: true
