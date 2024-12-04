@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "seed": "nodemon ./seeding/seed.mongodb.js"
+    "seed": "nodemon ./seeding/seed.mongodb.js",
+    "start": "node listen.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "@google-cloud/local-auth": "^2.1.0",
     "axios": "^1.7.8",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.6",
     "express": "^4.21.1",
     "googleapis": "^105.0.0",
     "http-server": "^14.1.1",

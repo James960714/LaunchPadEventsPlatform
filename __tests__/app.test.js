@@ -1,16 +1,19 @@
 const app = require('../app');
 const seed = require('../db/seeding/seed.mongodb');
 const request = require('supertest')
-const connection = require('../index')
+const {connection} = require('../connection')
 const mongoose = require('mongoose')
 const {Event} = require('../db/schemaModels')
+
 
 beforeEach(() => seed());
 afterAll(() => {
     return connection()
     .then(()=> {
         mongoose.disconnect()
-        return
+    })
+    .catch((err) => {
+        console.log(err)
     })
 })
 describe("GET /events", () => {
@@ -20,7 +23,6 @@ describe("GET /events", () => {
         .expect(200)
         .then(({body}) => {
             const events = body.events;
-            console.log(events)
             events.forEach((event) => {
                 expect(event).toHaveProperty("_id")
                 expect(event).toEqual(
@@ -55,16 +57,48 @@ describe("GET /events/:eventId", () => {
         })
         .then((response) => {
             const {_id} = response[0]
-            console.log(_id)
             return request(app)
             .get(`/events/${_id}`)
             .expect(200)
         })
         .then(({body}) => {
             const event = body.event
-            console.log(event)
-            expect(typeof(event)).toBe('Object')
+            expect(typeof(event)).toBe('object')
             expect(Array.isArray(event)).toBe(false)
+        })
+    })
+    test("GET 200: returns correct event object based on passed ID", () => {
+        let testEvent = {}
+        return connection()
+        .then(() => {
+            return Event.find({}).lean()
+        })
+        .then((response) => {
+            testEvent = response[0]
+            const {_id} = response[0]
+            return request(app)
+            .get(`/events/${_id}`)
+            .expect(200)
+        })
+        .then(({body}) => {
+            const event = body.event
+            const parsedEvent = {
+                ...event,
+                startDateTime: new Date(event.startDateTime),
+                endDateTime: new Date(event.endDateTime),
+            };
+            expect(parsedEvent).toEqual(
+                expect.objectContaining({
+                    _id: expect.any(String),
+                    __v: testEvent.__v,
+                    name: testEvent.name,
+                    startDateTime: testEvent.startDateTime,
+                    endDateTime: testEvent.endDateTime,
+                    location: testEvent.location,
+                    info: testEvent.info,
+                    image: testEvent.image,
+                })
+            )
         })
     })
     /*
