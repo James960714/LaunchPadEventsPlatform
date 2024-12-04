@@ -1,9 +1,7 @@
-const {mongoose} = require('mongoose')
-const connection = require('../../index')
+const {connection} = require('../../connection')
 const {User, Event} = require('../schemaModels')
-const userData = require('../../data/userData')
-const eventData = require('../../data/eventData')
-
+const userData = require('../../data/Test Data/userData')
+const eventData = require('../../data/Test Data/eventData')
 
 function seed() {
     return connection()
@@ -28,9 +26,6 @@ function seed() {
                 return newEvent.save()
             })
         );
-    })
-    .then(() => {
-        mongoose.disconnect();
     })
 };
 
