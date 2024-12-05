@@ -1,15 +1,16 @@
 const app = require('../app');
 const seed = require('../db/seeding/seed.mongodb');
 const request = require('supertest')
-const {connection} = require('../connection')
 const mongoose = require('mongoose')
-const {Event} = require('../db/schemaModels')
-const testData = require('../data/Test Data/index')
+const {Event, User} = require('../db/schemaModels')
+const testData = require('../data/Test Data/index');
+const { convertToMongoObjectId } = require('../utils');
 
 beforeEach(() => seed(testData));
 afterAll(() => {
     return mongoose.disconnect()
 })
+
 describe("GET /events", () => {
     test("GET 200: returns status 200 when all events are found", () => {
         return request(app)
@@ -44,11 +45,8 @@ describe("GET /events", () => {
     })
 })
 describe("GET /events/:eventId", () => {
-    test("GET 200: returns single event object", () => {
-        return connection()
-        .then(() => {
-            return Event.find({}).lean()
-        })
+    test("GET 200: returns single event object", () => {   
+        return Event.find({}).lean()
         .then((response) => {
             const {_id} = response[0]
             return request(app)
@@ -63,10 +61,7 @@ describe("GET /events/:eventId", () => {
     })
     test("GET 200: returns correct event object based on passed ID", () => {
         let testEvent = {}
-        return connection()
-        .then(() => {
-            return Event.find({}).lean()
-        })
+        return Event.find({}).lean()
         .then((response) => {
             testEvent = response[0]
             const {_id} = response[0]
@@ -80,7 +75,7 @@ describe("GET /events/:eventId", () => {
             //const convertId = {_id: ObjectId(event._id)}
             const parsedEvent = {
                 ...event,
-                _id: mongoose.Types.ObjectId.createFromHexString(event._id),
+                _id: convertToMongoObjectId(event._id),
                 startDateTime: new Date(event.startDateTime),
                 endDateTime: new Date(event.endDateTime),
             };
@@ -110,6 +105,121 @@ describe("GET /events/:eventId", () => {
     test("returns status 400 when passed an invalid ID", () => {
         return request(app)
         .get('/events/InvalidID')
+        .expect(400)
+        .then(({body}) => {
+            expect(body.msg).toBe('bad request')
+        })
+    })
+})
+describe("GET /users", () => {
+    test("GET 200: returns status 200 when all users are found and object properties are correct, and events attending array items can be converted into the correct data type", () => {
+        return request(app)
+        .get("/users")
+        .expect(200)
+        .then(({body}) => {
+            const users = body.users;
+            users.forEach((user) => {
+                expect(user).toHaveProperty("_id")
+                expect(user).toEqual(
+                    expect.objectContaining({
+                        __v: expect.any(Number),
+                        firstName: expect.any(String),
+                        lastName: expect.any(String),
+                        address: expect.objectContaining({
+                            houseNo: expect.any(String),
+                            postCode: expect.any(String),
+                            street: expect.any(String),
+                            townCity: expect.any(String),
+                        }),
+                        dob: expect.any(String),
+                        eventsAttending: expect.any(Array), 
+                        userType: expect.any(String),
+                    })
+                )
+                if(user.eventsAttending.length !== 0){
+                    const objectIdArray = user.eventsAttending.every((event) => {
+                        return mongoose.Types.ObjectId.createFromHexString(event)
+                    })
+                    expect(objectIdArray).toBe(true)
+                }
+            })
+        });
+    })
+    test("GET 200: returns status 200 returns the correct amount of users", () => {
+        return request(app)
+        .get("/users")
+        .expect(200)
+        .then(({body}) => {
+            const users = body.users;
+            expect(users.length).toEqual(10);
+        })
+    })
+})
+describe("GET /users/:userId", () => {
+    test("GET 200: returns single user object", () => {
+        return User.find({}).lean()
+        .then((response) => {
+            const {_id} = response[0]
+            return request(app)
+            .get(`/users/${_id}`)
+            .expect(200)
+        })
+        .then(({body}) => {
+            const user = body.user
+            expect(typeof(user)).toBe('object')
+            expect(Array.isArray(user)).toBe(false)
+        })
+    })
+    test("GET 200: returns correct user object based on passed ID", () => {
+        let testUser = {}
+        return User.find({}).lean()
+        .then((response) => {
+            testUser = response[0]
+            const {_id} = response[0]
+            return request(app)
+            .get(`/users/${_id}`)
+            .expect(200)
+        })
+        .then(({body}) => {
+            const user = body.user
+            //Express serialises the response body which is passed to it from mongodb. To test the date responses still work as Date data types, parsedUser changes them into JavaScript date types. 
+            //const convertId = {_id: ObjectId(user._id)}
+            const parsedUser = {
+                ...user,
+                _id: convertToMongoObjectId(user._id),
+                dob: new Date(user.dob)
+            };
+            expect(parsedUser).toEqual(
+                expect.objectContaining({
+                    _id: testUser._id,
+                    __v: testUser.__v,
+                    firstName: testUser.firstName,
+                    lastName: testUser.lastName,
+                    address: expect.objectContaining({
+                        houseNo: testUser.address.houseNo,
+                        postCode: testUser.address.postCode,
+                        street: testUser.address.street,
+                        townCity: testUser.address.townCity,
+                    }),
+                    dob: testUser.dob,
+                    eventsAttending: testUser.eventsAttending, 
+                    userType: testUser.userType,
+                })
+            )
+        })
+    })
+    test("returns status 404 when passed a valid but non-existent ID", () => {
+        return request(app)
+        .get('/users/67519d9c73fa4abb02b16ef6')
+        .expect(404)
+        .then(({body}) => {
+            expect(body.msg).toBe('not found')
+        })
+    })
+            
+    test("returns status 400 when passed an invalid ID", () => {
+        return request(app)
+        .get('/users/InvalidID')
         .expect(400)
         .then(({body}) => {
             expect(body.msg).toBe('bad request')
