@@ -4,17 +4,11 @@ const request = require('supertest')
 const {connection} = require('../connection')
 const mongoose = require('mongoose')
 const {Event} = require('../db/schemaModels')
+const testData = require('../data/Test Data/index')
 
-
-beforeEach(() => seed());
+beforeEach(() => seed(testData));
 afterAll(() => {
-    return connection()
-    .then(()=> {
-        mongoose.disconnect()
-    })
-    .catch((err) => {
-        console.log(err)
-    })
+    return mongoose.disconnect()
 })
 describe("GET /events", () => {
     test("GET 200: returns status 200 when all events are found", () => {
@@ -82,14 +76,17 @@ describe("GET /events/:eventId", () => {
         })
         .then(({body}) => {
             const event = body.event
+            //Express serialises the response body which is passed to it from mongodb. To test the date responses still work as Date data types, parsedEvent changes them into JavaScript date types. 
+            //const convertId = {_id: ObjectId(event._id)}
             const parsedEvent = {
                 ...event,
+                _id: mongoose.Types.ObjectId.createFromHexString(event._id),
                 startDateTime: new Date(event.startDateTime),
                 endDateTime: new Date(event.endDateTime),
             };
             expect(parsedEvent).toEqual(
                 expect.objectContaining({
-                    _id: expect.any(String),
+                    _id: testEvent._id,
                     __v: testEvent.__v,
                     name: testEvent.name,
                     startDateTime: testEvent.startDateTime,
@@ -101,15 +98,15 @@ describe("GET /events/:eventId", () => {
             )
         })
     })
-    /*
     test("returns status 404 when passed a valid but non-existent ID", () => {
         return request(app)
-        .get('/events/999')
+        .get('/events/67519d9c73fa4abb02b16ef6')
         .expect(404)
         .then(({body}) => {
             expect(body.msg).toBe('not found')
         })
     })
+            
     test("returns status 400 when passed an invalid ID", () => {
         return request(app)
         .get('/events/InvalidID')
@@ -118,5 +115,4 @@ describe("GET /events/:eventId", () => {
             expect(body.msg).toBe('bad request')
         })
     })
-*/
 })

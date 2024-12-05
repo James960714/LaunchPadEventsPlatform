@@ -17,7 +17,7 @@ exports.connection = () => {
             pass: process.env.DB_PASSWORD,
         })
         .then((result) => {
-            console.log('Connection estabislished with MongoDB');
+            //console.log('Connection estabislished with MongoDB');
             return result
         })
         .catch(error => {

@@ -1,9 +1,8 @@
 const {connection} = require('../../connection')
 const {User, Event} = require('../schemaModels')
-const userData = require('../../data/Test Data/userData')
-const eventData = require('../../data/Test Data/eventData')
 
-function seed() {
+
+function seed({userData, eventData}) {
     return connection()
     .then(() => {
         User.collection.drop();
