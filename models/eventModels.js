@@ -31,3 +31,28 @@ exports.addToAttendees = (_id, body) => {
         return Promise.reject(err)
     })
 }
+
+exports.createNewEvent = (newEvent) => {
+    
+    return Event.create(newEvent)
+    .then((response) => {
+        return response
+    })
+    .catch((err) => {
+        return Promise.reject(err)
+    })
+}
+
+exports.checkEventExists = (body) => {
+    return Event.find(
+        {name:body.name,
+        startDateTime: body.startDateTime,
+        endDateTime: body.endDateTime,
+        location: body.location
+    })
+    .then((response) => {
+        if(response.length > 0){
+            return Promise.reject({status: 403, msg: 'event already exists'})
+        }
+    })
+}

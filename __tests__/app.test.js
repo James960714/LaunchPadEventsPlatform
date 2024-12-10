@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const {Event, User} = require('../db/schemaModels')
 const testData = require('../data/Test Data/index');
 const { convertToMongoObjectId } = require('../utils');
+const { postNewEvent } = require('../controllers/eventControllers');
 
 beforeEach(() => seed(testData));
 afterAll(() => {
@@ -286,3 +287,129 @@ describe("POST /events/:eventId/attendees", () => {
         })
     })
 })
+describe("POST /events/event", () => {
+    test("POST 201: Successfuly creates an event that has the correct properties and data types", () => {
+        const newEvent = {
+            name: "Robotics Challenge",
+            startDateTime: "2025-11-03T09:00:00",
+            endDateTime: "2025-11-03T18:00:00",
+            location: "Coventry",
+            info: "See the latest in robotics compete in exciting challenges.",
+            image: "assets/images/event20.jpg"
+        }
+        const parsedNewEvent = {
+            ...newEvent,
+            startDateTime: new Date(newEvent.startDateTime),
+            endDateTime: new Date(newEvent.endDateTime),
+        };
+
+        return request(app)
+        .post('/events/event')
+        .send(parsedNewEvent)
+        .expect(201)
+        .then(({body}) => {
+            const postedEvent = {
+                ...body.postedEvent,
+                startDateTime: new Date(body.postedEvent.startDateTime),
+                endDateTime: new Date(body.postedEvent.endDateTime),
+            };
+            expect(postedEvent).toHaveProperty("_id")
+            expect(postedEvent).toEqual(
+                expect.objectContaining({
+                    __v: expect.any(Number),
+                    name: expect.any(String),
+                    startDateTime: expect.any(Date),
+                    endDateTime: expect.any(Date),
+                    location: expect.any(String),
+                    info: expect.any(String),
+                    image: expect.any(String),
+                })
+            )
+        })
+    });
+    test("POST 201: Successfuly creates an event that has the correct data", () => {
+        const newEvent = {
+            name: "Robotics Challenge",
+            startDateTime: "2025-11-03T09:00:00",
+            endDateTime: "2025-11-03T18:00:00",
+            location: "Coventry",
+            info: "See the latest in robotics compete in exciting challenges.",
+            image: "assets/images/event20.jpg"
+        }
+        const parsedNewEvent = {
+            ...newEvent,
+            startDateTime: new Date(newEvent.startDateTime),
+            endDateTime: new Date(newEvent.endDateTime),
+        };
+        return request(app)
+        .post('/events/event')
+        .send(parsedNewEvent)
+        .expect(201)
+        .then(({body}) => {
+            const postedEvent = {
+                ...body.postedEvent,
+                startDateTime: new Date(body.postedEvent.startDateTime),
+                endDateTime: new Date(body.postedEvent.endDateTime),
+            };
+            expect(postedEvent).toEqual(
+                expect.objectContaining({
+                    name: parsedNewEvent.name,
+                    startDateTime: parsedNewEvent.startDateTime,
+                    endDateTime: parsedNewEvent.endDateTime,
+                    location: parsedNewEvent.location,
+                    info: parsedNewEvent.info,
+                    image: parsedNewEvent.image,
+                })
+            )
+        })
+    })
+    test("POST 403: Returns error when event matching the Name, Start and End Time and Location of the request already exists", () => {
+        const newEvent = {
+            name: "Film Premiere",
+            startDateTime: "2025-09-10T18:00:00",
+            endDateTime: "2025-09-11T23:00:00",
+            location: "Newcastle",
+            info: "Catch the premiere of an awaited blockbuster.",
+            image: "assets/images/event9.jpg",
+            attendees: ["user3", "user5", "user7"]
+        }
+        const parsedNewEvent = {
+            ...newEvent,
+            startDateTime: new Date(newEvent.startDateTime),
+            endDateTime: new Date(newEvent.endDateTime),
+        };
+        return request(app)
+        .post('/events/event')
+        .send(parsedNewEvent)
+        .expect(403)
+        .then(({body}) => {
+            const error = body
+            expect(error.msg).toBe("event already exists")
+        })
+    })
+    test("POST 400: Returns bad request error when newEvent required property is missing (location in this test)", () => {
+        const newEvent = {
+            name: "Film Premiere",
+            startDateTime: "2025-09-10T18:00:00",
+            endDateTime: "2025-09-11T23:00:00",
+            info: "Catch the premiere of an awaited blockbuster.",
+            image: "assets/images/event9.jpg",
+            attendees: ["user3", "user5", "user7"]
+        }
+    
+        const parsedNewEvent = {
+            ...newEvent,
+            startDateTime: new Date(newEvent.startDateTime),
+            endDateTime: new Date(newEvent.endDateTime),
+        };
+        return request(app)
+        .post('/events/event')
+        .send(parsedNewEvent)
+        .expect(400)
+        .then(({body}) => {
+            const error = body
+            expect(error.msg).toBe("bad request")
+        })
+    })
+})
+

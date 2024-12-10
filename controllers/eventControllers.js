@@ -1,4 +1,4 @@
-const {fetchAllEvents, fetchEventById, addToAttendees} = require('../models/eventModels')
+const {fetchAllEvents, fetchEventById, addToAttendees, createNewEvent, checkEventExists} = require('../models/eventModels')
 const { checkUserExists } = require('../models/userModels')
 
 exports.getAllEvents = ((req, res, next) => {
@@ -7,7 +7,6 @@ exports.getAllEvents = ((req, res, next) => {
         res.status(200).send({events:events})
     })
     .catch((err) => {
-        console.log(err)
         next(err)
     })
 })
@@ -30,6 +29,17 @@ exports.postUserToAttendees = ((req, res, next) => {
     return Promise.all([checkUserExists(body),addToAttendees(eventId, body)])
     .then(([checkUser, eventSignedUpTo]) => {
         res.status(201).send({eventSignedUpTo: eventSignedUpTo})
+    })
+    .catch((err) => {
+        next(err)
+    })
+})
+
+exports.postNewEvent = ((req, res, next) => {
+    const {body} = req
+    return Promise.all([checkEventExists(body), createNewEvent(body)])
+    .then(([checkEventExists, postedEvent]) => {
+        res.status(201).send({postedEvent: postedEvent})
     })
     .catch((err) => {
         next(err)
