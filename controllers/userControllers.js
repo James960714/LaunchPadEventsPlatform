@@ -1,4 +1,4 @@
-const {fetchAllUsers, fetchUserById} = require('../models/userModels')
+const {fetchAllUsers, fetchUserById, updateUser} = require('../models/userModels')
 
 exports.getAllUsers = ((req, res, next) => {
      
@@ -17,6 +17,18 @@ exports.getUserById = ((req, res, next) => {
     return fetchUserById(userId)
     .then((user) => {
         res.status(200).send({user:user})
+    })
+    .catch((err) => {
+        next(err)
+    })
+})
+
+exports.patchUser = ((req, res, next) => {
+    const {userId} = req.params
+    const {body} = req
+    return Promise.all([fetchUserById(userId), updateUser(userId, body)])
+    .then(([checkUserExists,updatedUser]) => {
+        res.status(200).send({updatedUser: updatedUser})
     })
     .catch((err) => {
         next(err)
