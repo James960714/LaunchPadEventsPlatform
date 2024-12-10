@@ -476,5 +476,34 @@ describe("PATCH /events/:eventId", () => {
         })        
     })
 })
+describe("DELETE /events/:eventId", () => {
+    test('DELETE 204:removes Event when given valid comment_id', () => {
+        return Event.find({})
+        .then((response) => {
+            const {_id} = response[0]
+            return request(app)
+            .delete(`/events/${_id}`)
+            .expect(204)   
+        })
+    })
+    test('DELETE 404: returns not found error when passed non-existent valid ID', () => {
+        return request(app)
+        .delete('/events/67588152b1187052e3529f48')
+        .expect(404)
+        .then(({body}) => {
+            const error = body
+            expect(error.msg).toBe('not found')
+        })
+    })
+    test('DELETE 400: returns bad request error for invalid id', () => {
+        return request(app)
+        .delete('/events/invalidId')
+        .expect(400)
+        .then(({body}) => {
+            const error = body
+            expect(error.msg).toBe('bad request')
+        })
+    })
+})
 
 
