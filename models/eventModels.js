@@ -43,9 +43,9 @@ exports.createNewEvent = (newEvent) => {
     })
 }
 
-exports.checkEventExists = (body) => {
-    return Event.find(
-        {name:body.name,
+exports.checkEventDoesntExist = (body) => {
+    return Event.find({
+        name:body.name,
         startDateTime: body.startDateTime,
         endDateTime: body.endDateTime,
         location: body.location
@@ -54,5 +54,12 @@ exports.checkEventExists = (body) => {
         if(response.length > 0){
             return Promise.reject({status: 403, msg: 'event already exists'})
         }
+    })
+}
+
+exports.updateEvent = (id, eventUpdates) => {
+    return Event.findOneAndUpdate({_id:id}, eventUpdates, {new:true})
+    .then((response) => {
+        return response
     })
 }
