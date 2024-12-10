@@ -1,8 +1,6 @@
 const {User} = require('../db/schemaModels')
 
-exports.fetchAllUsers = () => {
-    
-    
+exports.fetchAllUsers = () => { 
     return User.find({}).lean().exec()
     .then((response)=> {
         return response
