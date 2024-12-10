@@ -1,6 +1,11 @@
 const {Schema, mongoose} = require('mongoose')
 
 const userSchema = new Schema({
+    userName: {
+        type: String,
+        required: [true, 'Please enter a username'],
+        unique: true,
+    },
     firstName: {
         type: String,
         required: [true, 'Please enter first name']
@@ -63,6 +68,10 @@ const eventsSchema = new Schema ({
         type: String,
         required: true
     },
+    attendees: {
+        type: [String],
+        default: []
+    }
 })
 
 const User = mongoose.model('User', userSchema)

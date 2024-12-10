@@ -11,7 +11,6 @@ exports.getAllUsers = ((req, res, next) => {
         console.log(err)
         next(err)
     })
-    
 })
 
 exports.getUserById = ((req, res, next) => {
@@ -23,5 +22,4 @@ exports.getUserById = ((req, res, next) => {
     .catch((err) => {
         next(err)
     })
-    
 })
