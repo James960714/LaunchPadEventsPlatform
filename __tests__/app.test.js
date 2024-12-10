@@ -123,6 +123,7 @@ describe("GET /users", () => {
                 expect(user).toEqual(
                     expect.objectContaining({
                         __v: expect.any(Number),
+                        userName: expect.any(String),
                         firstName: expect.any(String),
                         lastName: expect.any(String),
                         address: expect.objectContaining({
@@ -138,14 +139,14 @@ describe("GET /users", () => {
                 )
                 if(user.eventsAttending.length !== 0){
                     const objectIdArray = user.eventsAttending.every((event) => {
-                        return mongoose.Types.ObjectId.createFromHexString(event)
+                        return convertToMongoObjectId(event)
                     })
                     expect(objectIdArray).toBe(true)
                 }
             })
         });
     })
-    test("GET 200: returns status 200 returns the correct amount of users", () => {
+    test("GET 200: returns the correct amount of users", () => {
         return request(app)
         .get("/users")
         .expect(200)
@@ -182,8 +183,7 @@ describe("GET /users/:userId", () => {
         })
         .then(({body}) => {
             const user = body.user
-            //Express serialises the response body which is passed to it from mongodb. To test the date responses still work as Date data types, parsedUser changes them into JavaScript date types. 
-            //const convertId = {_id: ObjectId(user._id)}
+            //Express serialises the response body which is passed to it from mongodb. To test the date responses still work as Date data types and Ids as ObjectId data types, parsedUser changes them into JavaScript and MongoDB data types. 
             const parsedUser = {
                 ...user,
                 _id: convertToMongoObjectId(user._id),
@@ -193,6 +193,7 @@ describe("GET /users/:userId", () => {
                 expect.objectContaining({
                     _id: testUser._id,
                     __v: testUser.__v,
+                    userName: testUser.userName,
                     firstName: testUser.firstName,
                     lastName: testUser.lastName,
                     address: expect.objectContaining({
@@ -223,6 +224,65 @@ describe("GET /users/:userId", () => {
         .expect(400)
         .then(({body}) => {
             expect(body.msg).toBe('bad request')
+        })
+    })
+})
+describe("POST /events/:eventId/attendees", () => {
+    test("POST 201: Adds correct userName to the correct event attendees list", () => {
+        const singedUpUserBody = {user: "user3"}
+        let testEvent;
+        return Event.find({}).lean()
+        .then((response) => {
+            testEvent = response[0]
+            const {_id} = response[0]
+            return request(app)
+            .post(`/events/${_id}/attendees`)
+            .send(singedUpUserBody)
+            .expect(201)
+        })
+        .then(({body}) => {
+            const eventSignedUpTo = {
+                ...body.eventSignedUpTo,
+                _id: convertToMongoObjectId(body.eventSignedUpTo._id),
+            };
+   
+            expect(eventSignedUpTo.attendees).toContain(singedUpUserBody.user)
+            expect(eventSignedUpTo._id).toEqual(testEvent._id)
+            expect(eventSignedUpTo.attendees.length).toEqual(4)
+        })
+    })
+    test("POST 404: Returns not found response when passed a valid but non-existent event Id", () => {
+        const singedUpUserBody = {user: "user3"}
+        return request(app)
+        .post('/events/67519d9c73fa4abb02b16ef6/attendees')
+        .send(singedUpUserBody)
+        .expect(404)
+        .then(({body}) => {
+            expect(body.msg).toBe('not found')
+        })
+    })
+    test("POST 400: Returns bad request response when passed an invalid event Id", () => {
+        const singedUpUserBody = {user: "user3"}
+        return request(app)
+        .post('/events/invalidId/attendees')
+        .send(singedUpUserBody)
+        .expect(400)
+        .then(({body}) => {
+            expect(body.msg).toBe('bad request')
+        })
+    })
+    test("POST 404: Returns not found response when passed a non-existent user in post body", () => {
+        const singedUpUserBody = {user: "user999"}
+        return Event.find({}).lean()
+        .then((response) => {
+            const {_id} = response[0]
+            return request(app)
+            .post(`/events/${_id}/attendees`)
+            .send(singedUpUserBody)
+            .expect(404)
+        })
+        .then(({body}) => {
+            expect(body.msg).toBe('not found')
         })
     })
 })

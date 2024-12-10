@@ -5,7 +5,8 @@ const eventData = [
         "endDateTime": "2025-01-16T02:00:00",
         "location": "London",
         "info": "An amazing day of live music and fun.",
-        "image": "assets/images/event1.jpg"
+        "image": "assets/images/event1.jpg",
+        "attendees": ["user3", "user5", "user7"]
     },
     {
         "name": "Tech Expo",
@@ -13,7 +14,8 @@ const eventData = [
         "endDateTime": "2025-02-20T18:00:00",
         "location": "Manchester",
         "info": "Explore the latest in technology and innovation.",
-        "image": "assets/images/event2.jpg"
+        "image": "assets/images/event2.jpg",
+        "attendees": ["user3", "user5", "user7"]
     },
     {
         "name": "Art Show",
@@ -21,7 +23,8 @@ const eventData = [
         "endDateTime": "2025-03-06T20:00:00",
         "location": "Birmingham",
         "info": "A showcase of modern and classical art.",
-        "image": "assets/images/event3.jpg"
+        "image": "assets/images/event3.jpg",
+        "attendees": ["user3", "user5", "user7"]
     },
     {
         "name": "Literary Meet-up",
@@ -29,7 +32,8 @@ const eventData = [
         "endDateTime": "2025-04-10T19:00:00",
         "location": "Glasgow",
         "info": "Join us for a discussion with famous authors.",
-        "image": "assets/images/event4.jpg"
+        "image": "assets/images/event4.jpg",
+        "attendees": ["user3", "user5", "user7"]
     },
     {
         "name": "Food Festival",
@@ -37,7 +41,8 @@ const eventData = [
         "endDateTime": "2025-05-18T22:00:00",
         "location": "Leeds",
         "info": "Taste amazing cuisines from around the world.",
-        "image": "assets/images/event5.jpg"
+        "image": "assets/images/event5.jpg",
+        "attendees": ["user3", "user5", "user7"]
     },
     {
         "name": "Fitness Workshop",
@@ -45,7 +50,8 @@ const eventData = [
         "endDateTime": "2025-06-15T20:00:00",
         "location": "Cardiff",
         "info": "A day of fitness and wellness activities.",
-        "image": "assets/images/event6.jpg"
+        "image": "assets/images/event6.jpg",
+        "attendees": ["user3", "user5", "user7"]
     },
     {
         "name": "Science Symposium",
@@ -53,7 +59,8 @@ const eventData = [
         "endDateTime": "2025-07-25T18:00:00",
         "location": "Edinburgh",
         "info": "Learn about breakthroughs in science.",
-        "image": "assets/images/event7.jpg"
+        "image": "assets/images/event7.jpg",
+        "attendees": ["user3", "user5", "user7"]
     },
     {
         "name": "Dance Gala",
@@ -61,7 +68,8 @@ const eventData = [
         "endDateTime": "2025-08-21T02:00:00",
         "location": "Liverpool",
         "info": "An evening of spectacular dance performances.",
-        "image": "assets/images/event8.jpg"
+        "image": "assets/images/event8.jpg",
+        "attendees": ["user3", "user5", "user7"]
     },
     {
         "name": "Film Premiere",
@@ -69,7 +77,8 @@ const eventData = [
         "endDateTime": "2025-09-11T23:00:00",
         "location": "Newcastle",
         "info": "Catch the premiere of an awaited blockbuster.",
-        "image": "assets/images/event9.jpg"
+        "image": "assets/images/event9.jpg",
+        "attendees": ["user3", "user5", "user7"]
     },
     {
         "name": "Coding Hackathon",
@@ -77,7 +86,8 @@ const eventData = [
         "endDateTime": "2025-10-04T20:00:00",
         "location": "Oxford",
         "info": "Compete in a 24-hour coding challenge.",
-        "image": "assets/images/event10.jpg"
+        "image": "assets/images/event10.jpg",
+        "attendees": ["user3", "user5", "user7"]
     } 
 ]
 

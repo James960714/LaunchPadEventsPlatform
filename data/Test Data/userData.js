@@ -1,5 +1,6 @@
 const userData = [
     {
+      "userName": "user1",
       "firstName": "Alice",
       "lastName": "Johnson",
       "dob": "1985-06-15",
@@ -13,6 +14,7 @@ const userData = [
       "userType": "Customer"
     },
     {
+      "userName": "user2",
       "firstName": "Jack",
       "lastName": "Taylor",
       "dob": "1990-03-22",
@@ -26,6 +28,7 @@ const userData = [
       "userType": "Customer"
     },
     {
+      "userName": "user3",
       "firstName": "Emma",
       "lastName": "Wilson",
       "dob": "2001-12-05",
@@ -39,6 +42,7 @@ const userData = [
       "userType": "Customer"
     },
     {
+      "userName": "user4",
       "firstName": "Liam",
       "lastName": "Smith",
       "dob": "1973-09-10",
@@ -52,6 +56,7 @@ const userData = [
       "userType": "Staff"
     },
     {
+      "userName": "user5",
       "firstName": "Sophia",
       "lastName": "Brown",
       "dob": "1965-04-14",
@@ -65,6 +70,7 @@ const userData = [
       "userType": "Customer"
     },
     {
+      "userName": "user6",
       "firstName": "Noah",
       "lastName": "White",
       "dob": "1980-11-20",
@@ -78,6 +84,7 @@ const userData = [
       "userType": "Customer"
     },
     {
+      "userName": "user7",
       "firstName": "Olivia",
       "lastName": "Harris",
       "dob": "1995-02-13",
@@ -91,6 +98,7 @@ const userData = [
       "userType": "Customer"
     },
     {
+      "userName": "user8",
       "firstName": "James",
       "lastName": "Scott",
       "dob": "1978-07-30",
@@ -104,6 +112,7 @@ const userData = [
       "userType": "Staff"
     },
     {
+      "userName": "user9",
       "firstName": "Charlotte",
       "lastName": "Green",
       "dob": "1987-10-08",
@@ -117,6 +126,7 @@ const userData = [
       "userType": "Customer"
     },
     {
+      "userName": "user10",
       "firstName": "Benjamin",
       "lastName": "Martin",
       "dob": "1968-01-25",
