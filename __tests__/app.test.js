@@ -412,4 +412,69 @@ describe("POST /events/event", () => {
         })
     })
 })
+describe("PATCH /events/:eventId", () => {
+    test("PATCH 200: Updates correct event with specified changes", () => {
+        let testEvent;
+        const eventUpdates =  {
+            name: "Robotics Challenge",
+            startDateTime: "2025-11-03T09:00:00",
+            endDateTime: "2025-11-03T18:00:00",
+            location: "Coventry",
+            info: "See the latest in robotics compete in exciting challenges.",
+            image: "assets/images/event20.jpg"
+        }
+        const parsedEventUpdates = {
+            ...eventUpdates,
+            startDateTime: new Date(eventUpdates.startDateTime),
+            endDateTime: new Date(eventUpdates.endDateTime),
+        };
+        return Event.find({}).lean()
+        .then((response) => {
+            const {_id} = response[0]
+            testEvent = response[0]
+            return request(app)
+            .patch(`/events/${_id}`)
+            .send(eventUpdates)
+            .expect(200)
+        })
+        .then(({body}) => {
+            const parsedUpdatedEvent = {
+                ...body.updatedEvent,
+                _id: convertToMongoObjectId(body.updatedEvent._id),
+                startDateTime: new Date(body.updatedEvent.startDateTime),
+                endDateTime: new Date(body.updatedEvent.endDateTime),
+            };
+            expect(parsedUpdatedEvent).toEqual(
+                expect.objectContaining({
+                    _id: testEvent._id,
+                    name: parsedEventUpdates.name,
+                    startDateTime: parsedEventUpdates.startDateTime,
+                    endDateTime: parsedEventUpdates.endDateTime,
+                    location: parsedEventUpdates.location,
+                    info: parsedEventUpdates.info,
+                    image: parsedEventUpdates.image,
+                })
+            )
+        })
+    })
+    test("POST 404: Returns not found if Event doesn't exist", () => {
+        const eventUpdates =  {
+            name: "Robotics Challenge",
+            startDateTime: "2025-11-03T09:00:00",
+            endDateTime: "2025-11-03T18:00:00",
+            location: "Coventry",
+            info: "See the latest in robotics compete in exciting challenges.",
+            image: "assets/images/event20.jpg"
+        }
+        return request(app)
+        .patch('/events/67588152b1187052e3529f48')
+        .send(eventUpdates)
+        .expect(404)
+        .then(({body}) => {
+            const error = body
+            expect(error.msg).toBe('not found')
+        })        
+    })
+})
+
 
