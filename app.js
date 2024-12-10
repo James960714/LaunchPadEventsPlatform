@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const {connection} = require('./connection')
-const {getAllEvents, getEventById, postUserToAttendees, postNewEvent, patchEvent} = require('./controllers/eventControllers');
+const {getAllEvents, getEventById, postUserToAttendees, postNewEvent, patchEvent, deleteEvent} = require('./controllers/eventControllers');
 const { customError, badRequest, newInternalError } = require('./error_handling');
 const { getAllUsers, getUserById } = require('./controllers/userControllers');
 
@@ -20,6 +20,7 @@ app.get('/users/:userId', getUserById)
 app.post('/events/:eventId/attendees', postUserToAttendees)
 app.post('/events/event', postNewEvent)
 app.patch('/events/:eventId', patchEvent)
+app.delete('/events/:eventId', deleteEvent)
 
 app.use(badRequest);
 app.use(customError);

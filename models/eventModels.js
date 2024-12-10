@@ -63,3 +63,10 @@ exports.updateEvent = (id, eventUpdates) => {
         return response
     })
 }
+
+exports.removeEvent = (id) => {
+    return Event.deleteOne({_id: id})
+    .then((response) => {
+        return response
+    })
+}

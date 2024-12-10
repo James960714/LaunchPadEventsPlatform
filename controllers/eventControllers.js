@@ -1,4 +1,4 @@
-const {fetchAllEvents, fetchEventById, addToAttendees, createNewEvent, checkEventDoesntExist, updateEvent} = require('../models/eventModels')
+const {fetchAllEvents, fetchEventById, addToAttendees, createNewEvent, checkEventDoesntExist, updateEvent, removeEvent} = require('../models/eventModels')
 const { checkUserExists } = require('../models/userModels')
 
 exports.getAllEvents = ((req, res, next) => {
@@ -52,6 +52,17 @@ exports.patchEvent = ((req, res, next) => {
     return Promise.all([fetchEventById(eventId), updateEvent(eventId, body)])
     .then(([checkEventExists,updatedEvent]) => {
         res.status(200).send({updatedEvent: updatedEvent})
+    })
+    .catch((err) => {
+        next(err)
+    })
+})
+
+exports.deleteEvent = ((req, res, next) => {
+    const {eventId} = req.params
+    return Promise.all([fetchEventById(eventId), removeEvent(eventId)])
+    .then(([checkEventExists, deletedCount]) => {
+        res.status(204).send({deletedCount: deletedCount})
     })
     .catch((err) => {
         next(err)
