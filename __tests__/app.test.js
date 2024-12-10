@@ -505,5 +505,79 @@ describe("DELETE /events/:eventId", () => {
         })
     })
 })
-
-
+describe("PATCH /users/:userId", () => {
+    test("PATCH 200: Updates correct user with specified changes", () => {
+        let testUser;
+        const userUpdates = {
+            userName: "user20",
+            firstName: "Lily",
+            lastName: "King",
+            dob: "1989-03-11T00:00:00.000Z",
+            address: {
+                houseNo: "42",
+                street: "Cedar Avenue",
+                townCity: "Norwich",
+                postCode: "NR1 4AA"
+            },
+            eventsAttending: ['674d971e5c0a94b4de6377af'],
+            userType: "Customer"
+        }
+        return User.find({}).lean()
+        .then((response) => {
+            const {_id} = response[0]
+            testUser = response[0]
+            return request(app)
+            .patch(`/users/${_id}`)
+            .send(userUpdates)
+            .expect(200)
+        })
+        .then(({body}) => {
+            const parsedUpdatedUser = {
+                ...body.updatedUser,
+                _id: convertToMongoObjectId(body.updatedUser._id),
+            };
+            expect(parsedUpdatedUser).toEqual(
+                expect.objectContaining({
+                    _id: testUser._id,
+                    __v: testUser.__v,
+                    userName: userUpdates.userName,
+                    firstName: userUpdates.firstName,
+                    lastName: userUpdates.lastName,
+                    address: expect.objectContaining({
+                        houseNo: userUpdates.address.houseNo,
+                        postCode: userUpdates.address.postCode,
+                        street: userUpdates.address.street,
+                        townCity: userUpdates.address.townCity,
+                    }),
+                    dob: userUpdates.dob,
+                    eventsAttending: userUpdates.eventsAttending, 
+                    userType: userUpdates.userType,
+                })
+            )
+        })
+    })
+    test("POST 404: Returns not found if User doesn't exist", () => {
+        const userUpdates = {
+            userName: "user20",
+            firstName: "Lily",
+            lastName: "King",
+            dob: "1989-03-11T00:00:00.000Z",
+            address: {
+                houseNo: "42",
+                street: "Cedar Avenue",
+                townCity: "Norwich",
+                postCode: "NR1 4AA"
+            },
+            eventsAttending: ['674d971e5c0a94b4de6377af'],
+            userType: "Customer"
+        }
+        return request(app)
+        .patch('/users/67588152b1187052e3529f48')
+        .send(userUpdates)
+        .expect(404)
+        .then(({body}) => {
+            const error = body
+            expect(error.msg).toBe('not found')
+        })        
+    })
+})

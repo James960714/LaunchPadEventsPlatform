@@ -25,3 +25,10 @@ exports.checkUserExists = (user) => {
         }
     })
 }
+
+exports.updateUser = (id, userUpdates) => {
+    return User.findOneAndUpdate({_id:id}, userUpdates, {new:true})
+    .then((response) => {
+        return response
+    })
+}
