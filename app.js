@@ -4,15 +4,20 @@ const {connection} = require('./connection')
 const {getAllEvents, getEventById, postUserToAttendees, postNewEvent, patchEvent, deleteEvent} = require('./controllers/eventControllers');
 const { customError, badRequest, newInternalError } = require('./error_handling');
 const { getAllUsers, getUserById, patchUser } = require('./controllers/userControllers');
+const router = require('./db/googleCalendar/googleApi')
+
 
 
 app.use(express.json());
+
 app.use((req, res, next) => {
     return connection()
     .then(() => {
         return next()
     })
 })
+
+app.use('/google-calendar', router)
 app.get("/events", getAllEvents);
 app.get('/events/:eventId', getEventById)
 app.get('/users', getAllUsers)

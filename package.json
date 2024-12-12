@@ -7,7 +7,7 @@
     "test-app": "jest --runInBand --detectOpenHandles app",
     "test-utils": "jest --runInBand --detectOpenHandles utils",
     "seed": "nodemon ./seeding/seed.mongodb.js",
-    "start": "node listen.js"
+    "start": "nodemon ./listen.js"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
+    "nodemon": "^3.1.7",
     "supertest": "^7.0.0"
   }
 }
