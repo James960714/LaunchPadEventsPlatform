@@ -28,16 +28,19 @@ router.get('/auth', (req, res) => {
 });
 
 router.get('/auth/redirect', async (req, res) => {
-    try{
+    //try{
         const tokenCode = req.query.code
         const {tokens} = await oauth2Client.getToken(tokenCode)
+        console.log(tokens)
         oauth2Client.setCredentials(tokens)
         res.status(200).send({msg: 'auth works'})
-    }catch{
-        res.status(400).send({msg:'not setting credentials'})
-    }
-})
-
+        console.log(oauth2Client)
+        // }catch{
+            //   res.status(400).send({msg:'not setting credentials'})
+            //}
+        })
+        
+        
 
 router.get('/create-event', async (req, res) => {
     
