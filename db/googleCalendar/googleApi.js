@@ -28,9 +28,10 @@ router.get('/auth', (req, res) => {
 });
 
 router.get('/auth/redirect', async (req, res) => {
+    
     const tokenCode = req.query.code
     const {tokens} = await oauth2Client.getToken(tokenCode)
-    oauth2Client.setCredentials(tokens)
+    await oauth2Client.setCredentials(tokens)
     res.status(200).send({msg: 'auth works'})
 })
 
