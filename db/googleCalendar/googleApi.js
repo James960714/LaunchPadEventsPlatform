@@ -35,7 +35,7 @@ router.get('/auth/redirect', async (req, res) => {
         await oauth2Client.sestCredentials(tokens)
         res.status(200).send({msg: 'auth works'})
     }catch{
-        res.status(400).send(msg:'not setting credentials')
+        res.status(400).send({msg:'not setting credentials'})
     }
 })
 
