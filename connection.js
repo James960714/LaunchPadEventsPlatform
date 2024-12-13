@@ -3,10 +3,11 @@ const {config} = require('dotenv')
 
 exports.connection = () => {
     const ENV = process.env.NODE_ENV || "development";
+    console.log(ENV)
     config({
         path: `${__dirname}/.env.${ENV}`,
     });
-    if (!process.env.DB_URI && !process.env.TEST_DB_URI) {
+    if (!process.env.DB_URI) {
         throw new Error("DB_URI or TEST_DB_URI not set");
     }
 
@@ -17,6 +18,7 @@ exports.connection = () => {
             pass: process.env.DB_PASSWORD,
         })
         .then((result) => {
+            console.log(result)
             //console.log('Connection estabislished with MongoDB');
             return result
         })
