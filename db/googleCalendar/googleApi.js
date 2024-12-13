@@ -21,7 +21,7 @@ const scopes = ['https://www.googleapis.com/auth/calendar']
 router.get('/auth', (req, res) => {
     
     const url = oauth2Client.generateAuthUrl({
-        //access_type: "offline",
+        access_type: "offline",
         scope: scopes
     })
     res.redirect(url)    
