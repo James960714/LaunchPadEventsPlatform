@@ -2,12 +2,13 @@
   "name": "launchpadeventsplatform",
   "version": "1.0.0",
   "description": "## Project Overview",
-  "main": "index.js",
+  "main": "listen.js",
   "scripts": {
     "test-app": "jest --runInBand --detectOpenHandles app",
     "test-utils": "jest --runInBand --detectOpenHandles utils",
-    "seed": "nodemon ./seeding/seed.mongodb.js",
-    "start": "nodemon ./listen.js"
+    "seed": "node ./db/seeding/seed",
+    "start": "nodemon ./listen.js",
+    "seed-prod": "NODE_ENV=production npm run seed"
   },
   "keywords": [],
   "author": "",
