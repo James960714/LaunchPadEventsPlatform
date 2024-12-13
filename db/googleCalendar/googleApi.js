@@ -31,7 +31,7 @@ router.get('/auth/redirect', async (req, res) => {
     try{
         const tokenCode = req.query.code
         const {tokens} = await oauth2Client.getToken(tokenCode)
-        oauth2Client.sestCredentials(tokens)
+        oauth2Client.setCredentials(tokens)
         res.status(200).send({msg: 'auth works'})
     }catch{
         res.status(400).send({msg:'not setting credentials'})
