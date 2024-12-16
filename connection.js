@@ -3,7 +3,6 @@ const {config} = require('dotenv')
 
 exports.connection = () => {
     const ENV = process.env.NODE_ENV || "development";
-    console.log(ENV)
     config({
         path: `${__dirname}/.env.${ENV}`,
     });
@@ -18,7 +17,7 @@ exports.connection = () => {
             pass: process.env.DB_PASSWORD,
         })
         .then((result) => {
-            console.log(result)
+            
             //console.log('Connection estabislished with MongoDB');
             return result
         })

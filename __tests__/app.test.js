@@ -583,6 +583,109 @@ describe("PATCH /users/:userId", () => {
         })        
     })
 })
+describe("POST /users/user", () => {
+    test("POST 201: Successfuly creates a new user that has the correct properties and data types", () => {
+        const newUser = {
+            userName: 'user999',
+            firstName: 'John',
+            lastName: "Smith",
+            dob: "1987-06-22T00:00:00.000Z"
+        }
+        const parsedNewUser = {
+            ...newUser,
+            dob: new Date(newUser.dob),
+        };
+
+        return request(app)
+        .post('/users/user')
+        .send(parsedNewUser)
+        .expect(201)
+        .then(({body}) => {
+            const postedUser = {
+                ...body.postedUser,
+                dob: new Date(body.postedUser.dob),
+            };
+            expect(postedUser).toHaveProperty("_id")
+            expect(postedUser).toEqual(
+                expect.objectContaining({
+                    firstName: expect.any(String),
+                    lastName: expect.any(String),
+                    userName: expect.any(String),
+                    dob: expect.any(Date)
+                })
+            )
+        })
+    });
+    test("POST 201: Successfuly creates a new User that has the correct data", () => {
+        const newUser = {
+            userName: 'user999',
+            firstName: 'John',
+            lastName: "Smith",
+            dob: "1987-06-22T00:00:00.000Z"
+        }
+        const parsedNewUser = {
+            ...newUser,
+            dob: new Date(newUser.dob),
+        };
+        return request(app)
+        .post('/users/user')
+        .send(parsedNewUser)
+        .expect(201)
+        .then(({body}) => {
+            const postedUser = {
+                ...body.postedUser,
+                dob: new Date(body.postedUser.dob),
+            };
+            expect(postedUser).toEqual(
+                expect.objectContaining({
+                    firstName: parsedNewUser.firstName,
+                    lastName: parsedNewUser.lastName,
+                    userName: parsedNewUser.userName,
+                    dob: parsedNewUser.dob
+                })
+            )
+        })
+    })
+    test("POST 403: Returns error when user matching the userName already exists", () => {
+        const newUser = {
+            userName: "user2",
+            firstName: "Jack",
+            lastName: "Taylor",
+            dob: "1990-03-22T00:00:00.000Z"
+        }
+        const parsedNewUser = {
+            ...newUser,
+            dob: new Date(newUser.dob),
+        };
+        return request(app)
+        .post('/users/user')
+        .send(parsedNewUser)
+        .expect(403)
+        .then(({body}) => {
+            const error = body
+            expect(error.msg).toBe("user already exists")
+        })
+    })
+    test("POST 400: Returns bad request error when newUser required property is missing (lastName in this test)", () => {
+        const newUser = {
+            userName: "user2",
+            firstName: "Jack",
+            dob: "1990-03-22T00:00:00.000Z"
+        }
+        const parsedNewUser = {
+            ...newUser,
+            dob: new Date(newUser.dob),
+        };
+        return request(app)
+        .post('/users/user')
+        .send(parsedNewUser)
+        .expect(400)
+        .then(({body}) => {
+            const error = body
+            expect(error.msg).toBe("bad request")
+        })
+    })
+})
 /*
 describe("Testing router works", () => {
         test("same as above", async () => {

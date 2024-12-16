@@ -32,3 +32,26 @@ exports.updateUser = (id, userUpdates) => {
         return response
     })
 }
+
+exports.createNewUser = (newUser) => {
+    console.log('create')
+    return User.create(newUser)
+    .then((response) => {
+        return response
+    })
+    .catch((err) => {
+        return Promise.reject(err)
+    })
+}
+
+exports.checkUserDoesntExist = (body) => {
+    console.log('check')
+    return User.find({
+        userName:body.userName
+    })
+    .then((response) => {
+        if(response.length > 0){
+            return Promise.reject({status: 403, msg: 'user already exists'})
+        }
+    })
+}

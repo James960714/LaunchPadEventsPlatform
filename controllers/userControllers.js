@@ -1,4 +1,4 @@
-const {fetchAllUsers, fetchUserById, updateUser} = require('../models/userModels')
+const {fetchAllUsers, fetchUserById, updateUser, createNewUser, checkUserDoesntExist} = require('../models/userModels')
 
 exports.getAllUsers = ((req, res, next) => {
      
@@ -29,6 +29,18 @@ exports.patchUser = ((req, res, next) => {
     return Promise.all([fetchUserById(userId), updateUser(userId, body)])
     .then(([checkUserExists,updatedUser]) => {
         res.status(200).send({updatedUser: updatedUser})
+    })
+    .catch((err) => {
+        next(err)
+    })
+})
+
+exports.postNewUser = ((req, res, next) => {
+    const {body} = req
+console.log(body)
+    return Promise.all([checkUserDoesntExist(body), createNewUser(body)])
+    .then(([checkUserDoesntExist,postedUser]) => {
+        res.status(201).send({postedUser: postedUser})
     })
     .catch((err) => {
         next(err)

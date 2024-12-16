@@ -24,20 +24,22 @@ router.get('/auth', (req, res) => {
         access_type: "offline",
         scope: scopes
     })
+    //console.log(url)
     res.redirect(url)    
 });
 
 router.get('/auth/redirect', async (req, res) => {        
+    console.log(req)
     try {
         const tokenCode = req.query.code
-        console.log(tokenCode)
+      //  console.log(tokenCode)
         const {tokens} = await oauth2Client.getToken(tokenCode)
-        console.log(tokens)
+        //console.log(tokens)
         oauth2Client.setCredentials(tokens)
         res.status(200).send({msg: 'auth works'})
-        console.log(oauth2Client)
+        //console.log(oauth2Client)
     }catch(err){
-        console.log(err)
+        //console.log(err)
         res.status(400).send({msg:err})
     }        
 })
