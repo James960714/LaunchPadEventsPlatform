@@ -1,5 +1,6 @@
 const {connection} = require('../../connection')
 const {User, Event} = require('../schemaModels')
+const mongoose = require('mongoose')
 
 
 function seed({userData, eventData}) {
@@ -26,6 +27,9 @@ function seed({userData, eventData}) {
             })
         );
     })
+    // .then(() => {
+    //     return mongoose.disconnect()
+    // })
 };
 
 module.exports = seed;

@@ -159,13 +159,13 @@ describe("GET /users", () => {
         })
     })
 })
-describe("GET /users/:userId", () => {
+describe("GET /users/:userName", () => {
     test("GET 200: returns single user object", () => {
         return User.find({}).lean()
         .then((response) => {
-            const {_id} = response[0]
+            const {userName} = response[0]
             return request(app)
-            .get(`/users/${_id}`)
+            .get(`/users/${userName}`)
             .expect(200)
         })
         .then(({body}) => {
@@ -174,14 +174,14 @@ describe("GET /users/:userId", () => {
             expect(Array.isArray(user)).toBe(false)
         })
     })
-    test("GET 200: returns correct user object based on passed ID", () => {
+    test("GET 200: returns correct user object based on passed userName", () => {
         let testUser = {}
         return User.find({}).lean()
         .then((response) => {
             testUser = response[0]
-            const {_id} = response[0]
+            const {userName} = response[0]
             return request(app)
-            .get(`/users/${_id}`)
+            .get(`/users/${userName}`)
             .expect(200)
         })
         .then(({body}) => {
@@ -212,23 +212,15 @@ describe("GET /users/:userId", () => {
             )
         })
     })
-    test("returns status 404 when passed a valid but non-existent ID", () => {
+    test("returns status 404 when passed a valid but non-existent useName", () => {
         return request(app)
-        .get('/users/67519d9c73fa4abb02b16ef6')
+        .get('/users/Martin96')
         .expect(404)
         .then(({body}) => {
             expect(body.msg).toBe('not found')
         })
     })
-            
-    test("returns status 400 when passed an invalid ID", () => {
-        return request(app)
-        .get('/users/InvalidID')
-        .expect(400)
-        .then(({body}) => {
-            expect(body.msg).toBe('bad request')
-        })
-    })
+
 })
 describe("POST /events/:eventId/attendees", () => {
     test("POST 201: Adds correct userName to the correct event attendees list", () => {
@@ -507,7 +499,7 @@ describe("DELETE /events/:eventId", () => {
         })
     })
 })
-describe("PATCH /users/:userId", () => {
+describe("PATCH /users/:userName", () => {
     test("PATCH 200: Updates correct user with specified changes", () => {
         let testUser;
         const userUpdates = {
@@ -526,10 +518,10 @@ describe("PATCH /users/:userId", () => {
         }
         return User.find({}).lean()
         .then((response) => {
-            const {_id} = response[0]
+            const {userName} = response[0]
             testUser = response[0]
             return request(app)
-            .patch(`/users/${_id}`)
+            .patch(`/users/${userName}`)
             .send(userUpdates)
             .expect(200)
         })
@@ -574,7 +566,7 @@ describe("PATCH /users/:userId", () => {
             userType: "Customer"
         }
         return request(app)
-        .patch('/users/67588152b1187052e3529f48')
+        .patch('/users/martin96')
         .send(userUpdates)
         .expect(404)
         .then(({body}) => {

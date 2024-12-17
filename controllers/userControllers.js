@@ -1,4 +1,4 @@
-const {fetchAllUsers, fetchUserById, updateUser, createNewUser, checkUserDoesntExist} = require('../models/userModels')
+const {fetchAllUsers, fetchUserByUserName, updateUser, createNewUser, checkUserDoesntExist} = require('../models/userModels')
 
 exports.getAllUsers = ((req, res, next) => {
      
@@ -7,15 +7,14 @@ exports.getAllUsers = ((req, res, next) => {
         res.status(200).send({users:users})
     })
     .catch((err) => {
-        console.log(err)
         next(err)
     })
 })
 
-exports.getUserById = ((req, res, next) => {
-    const {userId} = req.params
-    return fetchUserById(userId)
-    .then((user) => {
+exports.getUserByUserName = ((req, res, next) => {
+    const {userName} = req.params
+    return fetchUserByUserName(userName)
+    .then(([user]) => {
         res.status(200).send({user:user})
     })
     .catch((err) => {
@@ -24,9 +23,9 @@ exports.getUserById = ((req, res, next) => {
 })
 
 exports.patchUser = ((req, res, next) => {
-    const {userId} = req.params
+    const {userName} = req.params
     const {body} = req
-    return Promise.all([fetchUserById(userId), updateUser(userId, body)])
+    return Promise.all([fetchUserByUserName(userName), updateUser(userName, body)])
     .then(([checkUserExists,updatedUser]) => {
         res.status(200).send({updatedUser: updatedUser})
     })
@@ -37,7 +36,6 @@ exports.patchUser = ((req, res, next) => {
 
 exports.postNewUser = ((req, res, next) => {
     const {body} = req
-console.log(body)
     return Promise.all([checkUserDoesntExist(body), createNewUser(body)])
     .then(([checkUserDoesntExist,postedUser]) => {
         res.status(201).send({postedUser: postedUser})

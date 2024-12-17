@@ -7,10 +7,10 @@ exports.fetchAllUsers = () => {
     })
 }
 
-exports.fetchUserById = (_id) => {
-    return User.findById(_id).lean()
+exports.fetchUserByUserName = (userName) => {
+    return User.find({userName:userName}).lean()
     .then((response) => {
-        if (response === null){
+        if (response.length === 0){
             return Promise.reject({status:404, msg: 'not found'})
         }
         return response
@@ -26,15 +26,14 @@ exports.checkUserExists = (user) => {
     })
 }
 
-exports.updateUser = (id, userUpdates) => {
-    return User.findOneAndUpdate({_id:id}, userUpdates, {new:true})
+exports.updateUser = (userName, userUpdates) => {
+    return User.findOneAndUpdate({userName:userName}, userUpdates, {new:true})
     .then((response) => {
         return response
     })
 }
 
 exports.createNewUser = (newUser) => {
-    console.log('create')
     return User.create(newUser)
     .then((response) => {
         return response
@@ -45,7 +44,6 @@ exports.createNewUser = (newUser) => {
 }
 
 exports.checkUserDoesntExist = (body) => {
-    console.log('check')
     return User.find({
         userName:body.userName
     })
