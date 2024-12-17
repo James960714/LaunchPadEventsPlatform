@@ -1,5 +1,6 @@
 const userData = [
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user20",
       "firstName": "Alice",
       "lastName": "Johnson",
@@ -14,6 +15,7 @@ const userData = [
       "userType": "Customer"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user21",
       "firstName": "Jack",
       "lastName": "Taylor",
@@ -28,6 +30,7 @@ const userData = [
       "userType": "Customer"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user22",
       "firstName": "Emma",
       "lastName": "Wilson",
@@ -42,6 +45,7 @@ const userData = [
       "userType": "Customer"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user23",
       "firstName": "Liam",
       "lastName": "Smith",
@@ -56,6 +60,7 @@ const userData = [
       "userType": "Staff"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user24",
       "firstName": "Sophia",
       "lastName": "Brown",
@@ -70,6 +75,7 @@ const userData = [
       "userType": "Customer"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user25",
       "firstName": "Noah",
       "lastName": "White",
@@ -84,6 +90,7 @@ const userData = [
       "userType": "Customer"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user26",
       "firstName": "Olivia",
       "lastName": "Harris",
@@ -98,6 +105,7 @@ const userData = [
       "userType": "Customer"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user27",
       "firstName": "James",
       "lastName": "Scott",
@@ -112,6 +120,7 @@ const userData = [
       "userType": "Staff"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user28",
       "firstName": "Charlotte",
       "lastName": "Green",
@@ -126,6 +135,7 @@ const userData = [
       "userType": "Customer"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user29",
       "firstName": "Benjamin",
       "lastName": "Martin",
@@ -140,6 +150,7 @@ const userData = [
       "userType": "Staff"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user30",
       "firstName": "Amelia",
       "lastName": "Davis",
@@ -154,6 +165,7 @@ const userData = [
       "userType": "Customer"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user31",
       "firstName": "Ethan",
       "lastName": "Clark",
@@ -168,6 +180,7 @@ const userData = [
       "userType": "Staff"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user32",
       "firstName": "Mia",
       "lastName": "Turner",
@@ -182,6 +195,7 @@ const userData = [
       "userType": "Customer"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user33",
       "firstName": "Henry",
       "lastName": "Parker",
@@ -196,6 +210,7 @@ const userData = [
       "userType": "Customer"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user34",
       "firstName": "Ella",
       "lastName": "Hall",
@@ -210,6 +225,7 @@ const userData = [
       "userType": "Customer"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user35",
       "firstName": "George",
       "lastName": "Moore",
@@ -224,6 +240,7 @@ const userData = [
       "userType": "Customer"
   },
   {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
     "userName": "user36",
       "firstName": "Grace",
       "lastName": "Wright",
@@ -236,34 +253,36 @@ const userData = [
         },
         "eventsAttending": [],
         "userType": "Staff"
-    },
-    {
-        "userName": "user37",
-        "firstName": "Lily",
-        "lastName": "King",
-        "dob": "1989-03-11",
-        "address": {
-            "houseNo": 42,
-            "street": "Cedar Avenue",
-            "townCity": "Norwich",
-            "postCode": "NR1 4AA"
-        },
-        "eventsAttending": ['674d971e5c0a94b4de6377af'],
-        "userType": "Customer"
-    },
-    {
-        "userName": "user38",
-        "firstName": "Leo",
-        "lastName": "Baker",
-        "dob": "1975-05-07",
-        "address": {
-            "houseNo": 56,
-            "street": "Spruce Street",
-            "townCity": "Exeter",
-            "postCode": "EX4 3AA"
-        },
-        "eventsAttending": [],
-        "userType": "Staff"
-    }
-  ]
+  },
+  {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
+      "userName": "user37",
+      "firstName": "Lily",
+      "lastName": "King",
+      "dob": "1989-03-11",
+      "address": {
+          "houseNo": 42,
+          "street": "Cedar Avenue",
+          "townCity": "Norwich",
+          "postCode": "NR1 4AA"
+      },
+      "eventsAttending": ['674d971e5c0a94b4de6377af'],
+      "userType": "Customer"
+  },
+  {
+    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
+      "userName": "user38",
+      "firstName": "Leo",
+      "lastName": "Baker",
+      "dob": "1975-05-07",
+      "address": {
+          "houseNo": 56,
+          "street": "Spruce Street",
+          "townCity": "Exeter",
+          "postCode": "EX4 3AA"
+      },
+      "eventsAttending": [],
+      "userType": "Staff"
+  }
+]
   module.exports = userData

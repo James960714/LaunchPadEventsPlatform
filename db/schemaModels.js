@@ -1,6 +1,9 @@
 const {Schema, mongoose} = require('mongoose')
 
 const userSchema = new Schema({
+    firebaseUID: {
+        type: String,
+    },
     userName: {
         type: String,
         required: [true, 'Please enter a username'],
@@ -20,25 +23,30 @@ const userSchema = new Schema({
     },
     address: {
         houseNo: {
-            type: String  
+            type: String,
+            default: ''  
         },
         street: {
             type: String,
+            default: ''
         },
         townCity:{
             type: String,
+            default: ''
         },
         postCode: {
             type: String,
+            default: ''
         },
     },
     eventsAttending: {
         type: [String],
         default: []
     },
-    userType: {
-        type: String,
-        default: 'Customer'
+    userType: { 
+        type: String, 
+        enum: ["Customer", "Staff", "Head"], 
+        default: "Customer" 
     },
 })
 

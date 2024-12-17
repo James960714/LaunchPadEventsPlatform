@@ -155,7 +155,7 @@ describe("GET /users", () => {
         .expect(200)
         .then(({body}) => {
             const users = body.users;
-            expect(users.length).toEqual(10);
+            expect(users.length).toEqual(11);
         })
     })
 })

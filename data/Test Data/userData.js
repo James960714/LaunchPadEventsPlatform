@@ -1,5 +1,6 @@
 const userData = [
   {
+    "firebaseUID": "string",
     "userName": "user1",
     "firstName": "Alice",
     "lastName": "Johnson",
@@ -14,6 +15,7 @@ const userData = [
     "userType": "Customer"
   },
   {
+    "firebaseUID": "string",
     "userName": "user2",
     "firstName": "Jack",
     "lastName": "Taylor",
@@ -28,6 +30,7 @@ const userData = [
     "userType": "Customer"
   },
   {
+    "firebaseUID": "string",
     "userName": "user3",
     "firstName": "Emma",
     "lastName": "Wilson",
@@ -42,6 +45,7 @@ const userData = [
     "userType": "Customer"
   },
   {
+    "firebaseUID": "string",
     "userName": "user4",
     "firstName": "Liam",
     "lastName": "Smith",
@@ -56,6 +60,7 @@ const userData = [
     "userType": "Staff"
   },
   {
+    "firebaseUID": "string",
     "userName": "user5",
     "firstName": "Sophia",
     "lastName": "Brown",
@@ -70,6 +75,7 @@ const userData = [
     "userType": "Customer"
   },
   {
+    "firebaseUID": "string",
     "userName": "user6",
     "firstName": "Noah",
     "lastName": "White",
@@ -84,6 +90,7 @@ const userData = [
     "userType": "Customer"
   },
   {
+    "firebaseUID": "string",
     "userName": "user7",
     "firstName": "Olivia",
     "lastName": "Harris",
@@ -98,6 +105,7 @@ const userData = [
     "userType": "Customer"
   },
   {
+    "firebaseUID": "string",
     "userName": "user8",
     "firstName": "James",
     "lastName": "Scott",
@@ -112,6 +120,7 @@ const userData = [
     "userType": "Staff"
   },
   {
+    "firebaseUID": "string",
     "userName": "user9",
     "firstName": "Charlotte",
     "lastName": "Green",
@@ -126,6 +135,7 @@ const userData = [
     "userType": "Customer"
   },
   {
+    "firebaseUID": "string",
     "userName": "user10",
     "firstName": "Benjamin",
     "lastName": "Martin",
