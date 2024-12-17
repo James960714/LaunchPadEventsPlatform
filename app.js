@@ -5,9 +5,10 @@ const {getAllEvents, getEventById, postUserToAttendees, postNewEvent, patchEvent
 const { customError, badRequest, newInternalError } = require('./error_handling');
 const { getAllUsers, getUserById, patchUser, postNewUser } = require('./controllers/userControllers');
 const router = require('./db/googleCalendar/googleApi')
+const cors = require('cors');
 
 
-
+app.use(cors())
 app.use(express.json());
 
 app.use((req, res, next) => {
