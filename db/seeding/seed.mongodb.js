@@ -39,7 +39,7 @@ function seed({userData, eventData}) {
         }
         const newHeadUser = new User({
             firebaseUid: "9OJpc6RC9ZWCxT5sNKx3uRhtjDu2",
-            userName: "headAdmin",
+            userName: "Jamesyo",
             firstName: "Head",
             lastName: "Admin",
             userType: "Head",
@@ -47,9 +47,9 @@ function seed({userData, eventData}) {
         });
         return newHeadUser.save();
     })
-    // .then(() => {
-    //     return mongoose.disconnect()
-    // })
+    .then(() => {
+        return mongoose.disconnect()
+    })
 };
 
 module.exports = seed;

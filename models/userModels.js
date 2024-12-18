@@ -21,7 +21,7 @@ exports.checkUserExists = (user) => {
     return User.find({userName: user.user})
     .then((response) => {
         if(response.length === 0){
-            return Promise.reject({status: 404, msg: 'not found'})
+            return Promise.reject({status: 404, msg: 'user not found'})
         }
     })
 }
