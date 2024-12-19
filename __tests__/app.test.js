@@ -282,7 +282,7 @@ describe("POST /events/:eventId/attendees", () => {
     })
 })
 describe("POST /events/event", () => {
-    test("POST 201: Successfuly creates an event that has the correct properties and data types", () => {
+    test.only("POST 201: Successfuly creates an event that has the correct properties and data types", () => {
         const newEvent = {
             name: "Robotics Challenge",
             startDateTime: "2025-11-03T09:00:00",

@@ -47,9 +47,9 @@ function seed({userData, eventData}) {
         });
         return newHeadUser.save();
     })
-    .then(() => {
-        return mongoose.disconnect()
-    })
+    // .then(() => {
+    //     return mongoose.disconnect()
+    // })
 };
 
 module.exports = seed;

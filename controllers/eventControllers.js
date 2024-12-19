@@ -37,6 +37,7 @@ exports.postUserToAttendees = ((req, res, next) => {
 
 exports.postNewEvent = ((req, res, next) => {
     const {body} = req
+    console.log(body)
     return Promise.all([checkEventDoesntExist(body), createNewEvent(body)])
     .then(([checkEventDoesntExist, postedEvent]) => {
         res.status(201).send({postedEvent: postedEvent})
