@@ -282,7 +282,7 @@ describe("POST /events/:eventId/attendees", () => {
     })
 })
 describe("POST /events/event", () => {
-    test.only("POST 201: Successfuly creates an event that has the correct properties and data types", () => {
+    test("POST 201: Successfuly creates an event that has the correct properties and data types", () => {
         const newEvent = {
             name: "Robotics Challenge",
             startDateTime: "2025-11-03T09:00:00",
@@ -340,6 +340,7 @@ describe("POST /events/event", () => {
         .send(parsedNewEvent)
         .expect(201)
         .then(({body}) => {
+            console.log(body)
             const postedEvent = {
                 ...body.postedEvent,
                 startDateTime: new Date(body.postedEvent.startDateTime),
