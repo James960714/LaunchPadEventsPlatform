@@ -46,25 +46,20 @@ router.get('/auth/redirect', async (req, res) => {
         
         
 
-router.get('/create-event', async (req, res) => {
-    
+router.post('/create-event', async (req, res) => {
+    const { summary, description, startDateTime, endDateTime } = req.body;
     try {
-      const result =  await calendar.events.insert({
-            auth: oauth2Client,
+        const event = {
+            summary,
+            description,
+            start: { dateTime: startDateTime, timeZone: 'UTC' },
+            end: { dateTime: endDateTime, timeZone: 'UTC' },
+        };
+
+        const result = await calendar.events.insert({
             calendarId: 'primary',
-            resource: {
-                "summary": 'Test Event',
-                "description": 'My event',
-                "start": {
-                    "dateTime": "2024-12-12T09:00:00-00:00",
-                    'timeZone': 'Europe/London',
-                },
-                'end': {
-                    'dateTime': '2024-12-12T17:00:00-00:00',
-                    'timeZone': 'Europe/London',
-                }
-            },
-        })
+            resource: event,
+        });
         console.log('event created', result.data.htmlLink) 
     } catch {
         console.log('There was an error contacting the Calendar service: ' + err);
