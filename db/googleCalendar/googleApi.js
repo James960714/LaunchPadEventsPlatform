@@ -29,7 +29,7 @@ router.get('/auth', (req, res) => {
         scope: scopes,
         state: eventId
     })
-    //console.log(url)
+    console.log('generated url', url)
     res.redirect(url)    
 });
 
@@ -43,6 +43,7 @@ router.get('/auth/redirect', async (req, res) => {
         const {tokens} = await oauth2Client.getToken(tokenCode)
         oauth2Client.setCredentials(tokens)
         const redirectFrontendURL = `${frontendURL}/events/${eventId}?authSuccess=true`
+        console.log('generated frontend url', redirectFrontendURL)
         res.redirect(redirectFrontendURL)
     }catch(err){
         res.status(400).send({msg:err})
