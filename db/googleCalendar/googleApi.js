@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router()
 const {google} = require('googleapis');
 const dotenv = require('dotenv')
+const moment = require("moment-timezone")
 const calendar = google.calendar({
     version: 'v3',
     auth: process.env.API_KEY
@@ -53,11 +54,13 @@ router.get('/auth/redirect', async (req, res) => {
 router.post('/create-event', async (req, res) => {
     const { summary, description, startDateTime, endDateTime } = req.body;
     try {
+        const start = moment.tz(startDateTime, 'Europe/London').format()
+        const end = moment.tz(endDateTime, 'Europe/London').format()
         const event = {
             summary,
             description,
-            start: { dateTime: startDateTime, timeZone: 'UTC' },
-            end: { dateTime: endDateTime, timeZone: 'UTC' },
+            start: { dateTime: start, timeZone: 'Europe/London'},
+            end: { dateTime: end, timeZone: 'Europe/London' },
         };
 
         const result = await calendar.events.insert({
@@ -66,9 +69,10 @@ router.post('/create-event', async (req, res) => {
             resource: event,
         });
         console.log('event created', result.data.htmlLink) 
+        res.status(201).send({msg: 'Event created'})
     } catch {
         console.log('There was an error contacting the Calendar service: ' + err);
-            return;
+        res.status(500).send({msg: 'Error creating event'})
     }
 
     res.status(201).send({msg:'event created'})
