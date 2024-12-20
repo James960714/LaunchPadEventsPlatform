@@ -17,34 +17,31 @@ const oauth2Client = new google.auth.OAuth2(
 )
 
 const scopes = ['https://www.googleapis.com/auth/calendar']
+const frontendURL = process.env.FRONTEND_URL
 
 router.get('/auth', (req, res) => {
-    
+    const {eventId} = req.query
     const url = oauth2Client.generateAuthUrl({
         access_type: "offline",
-        scope: scopes
+        scope: scopes,
+        state: eventId
     })
     //console.log(url)
     res.redirect(url)    
 });
 
 router.get('/auth/redirect', async (req, res) => {        
-    console.log(req)
+    const {eventId} = req.query.state
     try {
         const tokenCode = req.query.code
-      //  console.log(tokenCode)
         const {tokens} = await oauth2Client.getToken(tokenCode)
-        //console.log(tokens)
         oauth2Client.setCredentials(tokens)
-        res.status(200).send({msg: 'auth works'})
-        //console.log(oauth2Client)
+        const redirectFrontendURL = `${frontendURL}/events/${eventId}`
+        res.redirect(redirectFrontendURL)
     }catch(err){
-        //console.log(err)
         res.status(400).send({msg:err})
     }        
 })
-        
-        
 
 router.post('/create-event', async (req, res) => {
     const { summary, description, startDateTime, endDateTime } = req.body;
