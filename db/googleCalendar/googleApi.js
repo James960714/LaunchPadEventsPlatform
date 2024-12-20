@@ -61,6 +61,7 @@ router.post('/create-event', async (req, res) => {
         };
 
         const result = await calendar.events.insert({
+            auth: oauth2Client,
             calendarId: 'primary',
             resource: event,
         });
