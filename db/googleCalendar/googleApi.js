@@ -21,6 +21,9 @@ const frontendURL = process.env.FRONTEND_URL
 
 router.get('/auth', (req, res) => {
     const {eventId} = req.query
+    if(!eventId){
+        res.status(400).send({msg: 'eventId not found in /auth'})
+    }
     const url = oauth2Client.generateAuthUrl({
         access_type: "offline",
         scope: scopes,
@@ -32,6 +35,9 @@ router.get('/auth', (req, res) => {
 
 router.get('/auth/redirect', async (req, res) => {        
     const eventId = req.query.state
+    if(!eventId){
+        res.status(400).send({msg: 'eventId not found in /auth/redirect'})
+    }
     try {
         const tokenCode = req.query.code
         const {tokens} = await oauth2Client.getToken(tokenCode)
