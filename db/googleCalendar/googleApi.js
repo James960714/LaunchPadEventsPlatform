@@ -31,7 +31,7 @@ router.get('/auth', (req, res) => {
 });
 
 router.get('/auth/redirect', async (req, res) => {        
-    const eventId = req.query.state.eventId
+    const eventId = req.query.state
     try {
         const tokenCode = req.query.code
         const {tokens} = await oauth2Client.getToken(tokenCode)
