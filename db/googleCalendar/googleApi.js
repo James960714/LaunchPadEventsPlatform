@@ -42,7 +42,7 @@ router.get('/auth/redirect', async (req, res) => {
         const tokenCode = req.query.code
         const {tokens} = await oauth2Client.getToken(tokenCode)
         oauth2Client.setCredentials(tokens)
-        const redirectFrontendURL = `${frontendURL}/events/${eventId}?authSuccess=true`
+        const redirectFrontendURL = `${frontendURL}/redirect/events/${eventId}?authSuccess=true`
         res.redirect(redirectFrontendURL)
     }catch(err){
         res.status(400).send({msg:err})
