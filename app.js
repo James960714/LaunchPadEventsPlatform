@@ -7,8 +7,16 @@ const { getAllUsers, getUserByUserName, patchUser, postNewUser } = require('./co
 const router = require('./db/googleCalendar/googleApi')
 const cors = require('cors');
 
+const corsOptions = {
+    origin: [
+        'http://localhost:5173', 
+        'https://launchpadeventsplatform.onrender.com'  
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,  
+};
 
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(express.json());
 
 app.use((req, res, next) => {
