@@ -33,7 +33,9 @@ Configure Environment Variables Create a .env file in the root directory with th
 The database used was mongoDB so will require your local mongodb path in the database .env file.
 
 Run the seed file for development data and the testing framework used was jest which will automatically run the test.env file. 
+     
       npm run seed
+      
       npm run test
 
 The see here for instructions on setting up Google Calendar api: https://developers.google.com/calendar/api/quickstart/js
