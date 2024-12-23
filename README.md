@@ -1,67 +1,80 @@
 # LaunchPadEventsPlatform
 
-## Project Overview
+This project is a web application for; users to browse events, sign up to them and add them to thier Google calendar, staff / admin to post events and manage them. It consists of an API built with Express.js and a frontend built with React. The application uses the Google calendar API to create events in user's calendars.
 
-A small community business has reached out to you to create a platform where they can create and share events with members of the community.
+# Backend (Express)
+- RESTful API for event management.
+- Event creation, retrieval, and validation for duplicate events.
+- Middleware for authentication and error handling.
+- Integration with a database (e.g., MongoDB or PostgreSQL).
 
-You have been taked with building and hosting a platform (either a website or a mobile app) that allows community members to view, sign up for, and add events to their own personal calendars. Staff members should have additional functionality to create and manage events.
 
-## Minimum Viable Product (MVP)
+# Tech Stack
+Express.js: Backend framework for building APIs.
+Node.js: JavaScript runtime environment.
+Database: MongoDB, PostgreSQL, or similar (customize based on your setup).
+Google Calendar: Google API for interacting with a user's Google calendar.
 
-Your platform must fulfill the following functionality:
+# Setup Instructions
 
-1. Display a list of events for users to browse.
-2. Allow users to sign up for an event.
-3. Allow users to add events to their Google Calendar after signing up.
-4. Enable staff members to sign-in to create and manage events.
+Clone the Repository
 
-See [Completion and Submission Requirements](#completion-and-submission-requirements) for more details.
+      git clone https://github.com/your-repo/backend.git
+      cd backend
+Install Dependencies
 
-## Tech Choices:
+      npm install
 
-- The platform should be built using **JavaScript** or **TypeScript**.
-- **Event Data**: You can use either a freely available API for event data or create your own event data. Research and decide on which API to use prior to starting. The focus is on building the platform, not on data generation.
-- **Calendar API**: You'll need to sign up for the Google Calendar API (or an equivalent) using a free developer account. This will allow users to add events to their calendars.
-- Implement security best practices for **user authentication**
-- Host the project on a **free platform** (e.g., GitHub Pages for web, Expo for mobile apps).
+Configure Environment Variables Create a .env file in the root directory with the following variables:
 
-The following technologies and tools are **suggestions**, not requirements:
+      PORT=9090
+      DATABASE_URL=<your_database_url>
 
-- **React** or **React Native** for the frontend.
-- **TypeScript** for a new challenge.
-- **Google Calendar API** for calendar integration.
-- **ExpoDev** for hosting a mobile React Native apps - This platform will provide a QR code and URL so your project can be accessed via the ExpoDev app.
+The database used was mongoDB so will require your local mongodb path in the database .env file.
 
-## UI Requirements
+Run the seed file for development data and the testing framework used was jest which will automatically run the test.env file. 
+     
+      npm run seed
+      
+      npm run test
 
-- Ensure the design is **responsive** and works well across different screen sizes.
-- **Accessibility** must be considered for users with disabilities (e.g., screen readers, keyboard navigation).
-- The platform should clearly communicate **errors** to the users (e.g., failed requests, missing fields).
-- Loading states should be obvious when content is being fetched.
-- The user interface should be intuitive, making it easy to find, sign up for, and create events.
+The see here for instructions on setting up Google Calendar api: https://developers.google.com/calendar/api/quickstart/js
 
-## Completion and Submission Requirements
+I would reccomend putting the credentials into a .env file as well within db/googlecalendar directory as it is referenced from there in the googleApi file. 
 
-The due date will be advised, but it will be no later than four weeks after the project commencement.
 
-Your project must meet the following criteria to be considered complete:
+Run the Backend
 
-1. The project must be **hosted** and publicly accessible (web or mobile).
-2. The README must include:
-   - A summary of the project
-     - you may consider recording a **video walkthrough** of your platform, highlighting key features. Host this video on a free platform (e.g., YouTube) and include a link in your README.
-   - Test account access details
-   - Clear instructions on how to run the project locally, including any setup steps (e.g., installing dependencies, setting up environment variables).
-3. Meet the [MVP requirements](#minimum-viable-product-mvp) outlined above.
+      npm start
 
-Failure to do this may result in the project being rejected.
+The server will run on http://localhost:9090.
 
-## _Optional_ Extensions
+# API Endpoints
 
-If you have time once you have completed the MVP requirements, consider adding the following features:
+GET    '/google-calendar/auth': redirects user to the google oauth2 page
 
-1. **Payment platform integration**: Implement payments via Stripe, Google Pay, etc.
-2. **Confirmation emails**: Automatically send confirmation emails to users who sign up for an event.
-3. **Social media integration**: Allow users to share events on social platforms.
-4. **Cross-platform**: Build both a website and a mobile app.
-5. **Google/Social login**: Allow users to sign up using their Google or social media accounts.
+GET    '/google-calendar/auth/redirect': oauth2 page which then redirects the user back to the event page
+
+POST   '/google-calendar/create-event': posts event oto user's google clendar once authorised token has been given
+
+GET    '/events': retrieves all vents in db
+
+GET    '/events/:eventId': retireves and event by eventId
+
+GET    '/users', getAllUsers): retrieves all user in db
+
+GET    '/users/:userName': retirves user by username
+
+POST   '/events/:eventId/attendees: adds a user to the list of attendees for an event
+
+POST   '/events/event': creates an event
+
+PATCH  '/events/:eventId': makes edits to the event object
+
+DELETE '/events/:eventId': removes and event from the db
+
+PATCH  '/users/:userName': edits the user credentials
+
+POST   '/users/user': creates a new user
+
+
