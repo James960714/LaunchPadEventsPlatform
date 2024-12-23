@@ -679,26 +679,3 @@ describe("POST /users/user", () => {
         })
     })
 })
-/*
-describe("Testing router works", () => {
-        test("same as above", async () => {
-            const event = {
-                summary: 'newEvent',
-                location: '800 Howard St., San Francisco, CA 94103',
-                description: 'A chance to hear more about Google\'s developer products.',
-                start: { dateTime: '2024-11-29T09:00:00-00:00', timeZone: 'Europe/London' },
-                end: { dateTime: '2024-11-29T17:00:00-00:00', timeZone: 'Europe/London' },
-                recurrence: ['RRULE:FREQ=DAILY;COUNT=1'],
-                attendees: [{ email: 'lpage@example.com' }, { email: 'sbrin@example.com' }],
-                reminders: { useDefault: false, overrides: [{ method: 'email', minutes: 24 * 60 }, { method: 'popup', minutes: 10 }] },
-            };
-        
-            return request(app)
-            .get('/google-calendar/auth')
-            .expect(200)
-            .then(({body}) => {
-                expect(body.msg).toBe('logged in');
-            })
-        });
-    })
-    */        
