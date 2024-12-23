@@ -9,7 +9,8 @@ const cors = require('cors');
 
 const allowedOrigins = [
     'http://localhost:5173', 
-    'https://launchpadeventsplatform.onrender.com',  
+    'https://launchpadeventsplatform.onrender.com',
+    'https://selectevents.netlify.app'  
 ];
 
 
