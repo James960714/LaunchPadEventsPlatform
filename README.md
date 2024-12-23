@@ -52,16 +52,29 @@ The server will run on http://localhost:9090.
 # API Endpoints
 
 GET    '/google-calendar/auth': redirects user to the google oauth2 page
+
 GET    '/google-calendar/auth/redirect': oauth2 page which then redirects the user back to the event page
+
 POST   '/google-calendar/create-event': posts event oto user's google clendar once authorised token has been given
+
 GET    '/events': retrieves all vents in db
+
 GET    '/events/:eventId': retireves and event by eventId
+
 GET    '/users', getAllUsers): retrieves all user in db
+
 GET    '/users/:userName': retirves user by username
+
 POST   '/events/:eventId/attendees: adds a user to the list of attendees for an event
+
 POST   '/events/event': creates an event
+
 PATCH  '/events/:eventId': makes edits to the event object
+
 DELETE '/events/:eventId': removes and event from the db
+
 PATCH  '/users/:userName': edits the user credentials
+
 POST   '/users/user': creates a new user
+
 
