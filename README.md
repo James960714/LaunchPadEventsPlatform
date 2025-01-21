@@ -24,25 +24,26 @@ And see here for the live website: https://selectevents.netlify.app
 
 1. Clone the Repository
 
-            git clone https://github.com/your-repo/backend.git
-            cd backend
+            git clone [https://github.com/your-repo/backend.git](https://github.com/James960714/LaunchPadEventsPlatform.git)
+   
+            cd LaunchPadEventsPlatform
    
 3. Install Dependencies
 
-      npm install
+            npm install
 
 4. Configure Environment Variables Create a .env file in the root directory with the following variables:
 
-      PORT=9090
-      DATABASE_URL=<your_database_url>
+            PORT=9090
+            DATABASE_URL=<your_database_url>
 
 - The database used was mongoDB so will require your local mongodb path in the database .env file.
 
 4. Run the seed file for development data and the testing framework used was jest which will automatically run the test.env file. 
      
-      npm run seed
-      
-      npm run test
+            npm run seed
+                  
+            npm run test
 
 5. Then see here for instructions on setting up Google Calendar api: https://developers.google.com/calendar/api/quickstart/js
 
@@ -51,7 +52,7 @@ And see here for the live website: https://selectevents.netlify.app
 
 6. Run the Backend
 
-      npm start
+            npm start
 
 - The server will run on http://localhost:9090.
 
