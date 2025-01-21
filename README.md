@@ -24,13 +24,14 @@ And see here for the live website: https://selectevents.netlify.app
 
 1. Clone the Repository
 
-      git clone https://github.com/your-repo/backend.git
-      cd backend
-2. Install Dependencies
+            git clone https://github.com/your-repo/backend.git
+            cd backend
+   
+3. Install Dependencies
 
       npm install
 
-3. Configure Environment Variables Create a .env file in the root directory with the following variables:
+4. Configure Environment Variables Create a .env file in the root directory with the following variables:
 
       PORT=9090
       DATABASE_URL=<your_database_url>
