@@ -2,10 +2,10 @@
 
 This project is a web application for; users to browse events, sign up to them and add them to thier Google calendar, staff / admin to post events and manage them. It consists of an API built with Express.js and a frontend built with React. The application uses the Google calendar API to create events in user's calendars.
 
-Please see here for the counter-part frontend (see readMe for set up and test accounts): https://github.com/James960714/LaunchPadEvents-FE
+**Please see here for the counter-part frontend (see readMe for set up and test accounts): https://github.com/James960714/LaunchPadEvents-FE
 
 And see here for the live website: https://selectevents.netlify.app
-
+**
 # Backend (Express)
 - RESTful API for event management.
 - Event creation, retrieval, and validation for duplicate events.
