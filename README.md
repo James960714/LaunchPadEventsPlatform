@@ -37,7 +37,7 @@ And see here for the live website: https://selectevents.netlify.app
             PORT=9090
             DATABASE_URL=<your_database_url>
 
-- The database used was mongoDB so will require your local mongodb path in the database .env file.
+            - The database used was mongoDB so will require your local mongodb path in the database .env file.
 
 4. Run the seed file for development data and the testing framework used was jest which will automatically run the test.env file. 
      
