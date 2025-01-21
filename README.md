@@ -14,10 +14,14 @@ And see here for the live website: https://selectevents.netlify.app
 
 
 # Tech Stack
-Express.js: Backend framework for building APIs.
-Node.js: JavaScript runtime environment.
-Database: MongoDB, PostgreSQL, or similar (customize based on your setup).
-Google Calendar: Google API for interacting with a user's Google calendar.
+      - Express.js: Backend framework for building APIs.
+
+      - Node.js: JavaScript runtime environment.
+
+      - Database: MongoDB, PostgreSQL, or similar (customize based on your setup).
+
+      - Google Calendar: Google API for interacting with a user's Google calendar.
+
 
 # Setup Instructions
 
