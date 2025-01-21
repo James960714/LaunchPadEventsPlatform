@@ -7,20 +7,17 @@ Please see here for the counter-part frontend: https://github.com/James960714/La
 And see here for the live website: https://selectevents.netlify.app
 
 # Backend (Express)
-      - RESTful API for event management.
-      - Event creation, retrieval, and validation for duplicate events.
-      - Middleware for authentication and error handling.
-      - Integration with a database (e.g., MongoDB or PostgreSQL).
+- RESTful API for event management.
+- Event creation, retrieval, and validation for duplicate events.
+- Middleware for authentication and error handling.
+- Integration with a database (e.g., MongoDB or PostgreSQL).
 
 
 # Tech Stack
-      - Express.js: Backend framework for building APIs.
-
-      - Node.js: JavaScript runtime environment.
-
-      - Database: MongoDB, PostgreSQL, or similar (customize based on your setup).
-
-      - Google Calendar: Google API for interacting with a user's Google calendar.
+- Express.js: Backend framework for building APIs.
+- Node.js: JavaScript runtime environment.
+- Database: MongoDB, PostgreSQL, or similar (customize based on your setup).
+- Google Calendar: Google API for interacting with a user's Google calendar.
 
 
 # Setup Instructions
