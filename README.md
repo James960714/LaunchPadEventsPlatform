@@ -7,10 +7,10 @@ Please see here for the counter-part frontend: https://github.com/James960714/La
 And see here for the live website: https://selectevents.netlify.app
 
 # Backend (Express)
-- RESTful API for event management.
-- Event creation, retrieval, and validation for duplicate events.
-- Middleware for authentication and error handling.
-- Integration with a database (e.g., MongoDB or PostgreSQL).
+      - RESTful API for event management.
+      - Event creation, retrieval, and validation for duplicate events.
+      - Middleware for authentication and error handling.
+      - Integration with a database (e.g., MongoDB or PostgreSQL).
 
 
 # Tech Stack
