@@ -58,54 +58,54 @@ The server will run on http://localhost:9090.
 
 - GET    '/google-calendar/auth':
 
-       redirects user to the google oauth2 page
+      Redirects user to the google oauth2 page
 
 - GET    '/google-calendar/auth/redirect':
 
-       oauth2 page which then redirects the user back to the event page
+      Oauth2 page which then redirects the user back to the event page
 
 - POST   '/google-calendar/create-event':
 
-       posts event oto user's google clendar once authorised token has been given
+      Posts event onto user's google clendar once authorised token has been given
 
 - GET    '/events':
 
-       retrieves all vents in db
+      Retrieves all events in db
 
 - GET    '/events/:eventId':
 
-       retireves and event by eventId
+      Retireves event by eventId
 
 - GET    '/users', getAllUsers):
 
-       retrieves all user in db
+      Retrieves all user in db
 
 - GET    '/users/:userName':
 
-       retirves user by username
+      Retirves user by username
 
 - POST   '/events/:eventId/attendees:
 
-       adds a user to the list of attendees for an event
+      Adds a user to the list of attendees for an event
 
 - POST   '/events/event':
 
-       creates an event
+      Creates an event
 
 - PATCH  '/events/:eventId':
 
-       makes edits to the event object
+      Makes edits to the event object
 
 - DELETE '/events/:eventId':
 
-       removes and event from the db
+      Removes event from the db
 
 - PATCH  '/users/:userName':
 
-       edits the user credentials
+      Edits the user credentials
 
 - POST   '/users/user':
 
-   creates a new user
+      Creates a new user
 
 
