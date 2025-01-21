@@ -22,37 +22,37 @@ And see here for the live website: https://selectevents.netlify.app
 
 # Setup Instructions
 
-Clone the Repository
+1. Clone the Repository
 
       git clone https://github.com/your-repo/backend.git
       cd backend
-Install Dependencies
+2. Install Dependencies
 
       npm install
 
-Configure Environment Variables Create a .env file in the root directory with the following variables:
+3. Configure Environment Variables Create a .env file in the root directory with the following variables:
 
       PORT=9090
       DATABASE_URL=<your_database_url>
 
-The database used was mongoDB so will require your local mongodb path in the database .env file.
+- The database used was mongoDB so will require your local mongodb path in the database .env file.
 
-Run the seed file for development data and the testing framework used was jest which will automatically run the test.env file. 
+4. Run the seed file for development data and the testing framework used was jest which will automatically run the test.env file. 
      
       npm run seed
       
       npm run test
 
-The see here for instructions on setting up Google Calendar api: https://developers.google.com/calendar/api/quickstart/js
+5. Then see here for instructions on setting up Google Calendar api: https://developers.google.com/calendar/api/quickstart/js
 
-I would reccomend putting the credentials into a .env file as well within db/googlecalendar directory as it is referenced from there in the googleApi file. 
+- I would reccomend putting the credentials into a .env file as well within db/googlecalendar directory as it is referenced from there in the googleApi file. 
 
 
-Run the Backend
+6. Run the Backend
 
       npm start
 
-The server will run on http://localhost:9090.
+- The server will run on http://localhost:9090.
 
 # API Endpoints
 
