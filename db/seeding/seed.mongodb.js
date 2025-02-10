@@ -38,18 +38,18 @@ function seed({userData, eventData}) {
             return;
         }
         const newHeadUser = new User({
-            firebaseUid: "9OJpc6RC9ZWCxT5sNKx3uRhtjDu2",
-            userName: "Jamesyo",
-            firstName: "Head",
-            lastName: "Admin",
+            firebaseUID: "zL6iOorDd8QxRcMqLN95EzU4ktI3",
+            userName: "AdminHead",
+            firstName: "head",
+            lastName: "admin",
             userType: "Head",
             dob: "2001-12-05T00:00:00.000Z"
         });
         return newHeadUser.save();
     })
-    // .then(() => {
-    //     return mongoose.disconnect()
-    // })
+    .then(() => {
+        return mongoose.disconnect()
+    })
 };
 
 module.exports = seed;

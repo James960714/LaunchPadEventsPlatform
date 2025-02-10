@@ -1,10 +1,10 @@
 const userData = [
   {
-    "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
-    "userName": "user20",
-      "firstName": "Alice",
-      "lastName": "Johnson",
-      "dob": "1985-06-15",
+    "firebaseUID": "2hfLDyexahhCJiR6e3SuyyDhbS52",
+    "userName": "testStaff1",
+      "firstName": "Test",
+      "lastName": "Staff",
+      "dob": "2001-01-01",
       "address": {
           "houseNo": 101,
           "street": "Queen Street",
@@ -12,7 +12,7 @@ const userData = [
           "postCode": "E1 7AA"
       },
       "eventsAttending": ['674d971e5c0a94b4de6377ab', '674d971e5c0a94b4de6377ac', '674d971e5c0a94b4de6377aa'],
-      "userType": "Customer"
+      "userType": "Staff"
   },
   {
     "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
@@ -57,7 +57,7 @@ const userData = [
           "postCode": "G2 7BG"
       },
       "eventsAttending": [],
-      "userType": "Staff"
+      "userType": "Customer"
   },
   {
     "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
@@ -117,7 +117,7 @@ const userData = [
           "postCode": "L1 2AB"
       },
       "eventsAttending": [],
-      "userType": "Staff"
+      "userType": "Customer"
   },
   {
     "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
@@ -147,7 +147,7 @@ const userData = [
           "postCode": "OX1 1RF"
       },
       "eventsAttending": [],
-      "userType": "Staff"
+      "userType": "Customer"
   },
   {
     "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
@@ -177,7 +177,7 @@ const userData = [
           "postCode": "CB1 1AA"
       },
       "eventsAttending": [],
-      "userType": "Staff"
+      "userType": "Customer"
   },
   {
     "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
@@ -252,7 +252,7 @@ const userData = [
           "postCode": "YO1 7RD"
         },
         "eventsAttending": [],
-        "userType": "Staff"
+        "userType": "Customer"
   },
   {
     "firebaseUID": "7QQ9F8Xdzwefs4Cud3LUokdrmPv3",
@@ -282,7 +282,7 @@ const userData = [
           "postCode": "EX4 3AA"
       },
       "eventsAttending": [],
-      "userType": "Staff"
+      "userType": "Customer"
   }
 ]
   module.exports = userData
