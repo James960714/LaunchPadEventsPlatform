@@ -69,10 +69,10 @@ router.post('/create-event', async (req, res) => {
             resource: event,
         });
         console.log('event created', result.data.htmlLink) 
-        res.status(201).send({msg: 'Event created'})
+        return res.status(201).send({msg: 'Event created'})
     } catch {
         console.log('There was an error contacting the Calendar service: ' + err);
-        res.status(500).send({msg: 'Error creating event'})
+        return res.status(500).send({msg: 'Error creating event'})
     }
 });
 
