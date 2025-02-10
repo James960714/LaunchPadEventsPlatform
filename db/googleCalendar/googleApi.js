@@ -31,7 +31,7 @@ router.get('/auth', (req, res) => {
         state: eventId
     })
     console.log('generated url', url)
-    res.redirect(url)    
+    return res.redirect(url)    
 });
 
 router.get('/auth/redirect', async (req, res) => {        
@@ -45,9 +45,9 @@ router.get('/auth/redirect', async (req, res) => {
         oauth2Client.setCredentials(tokens)
         const redirectFrontendURL = `${frontendURL}/events/${eventId}?authSuccess=true`
         console.log('generated frontend url', redirectFrontendURL)
-        res.redirect(redirectFrontendURL)
+        return res.redirect(redirectFrontendURL)
     }catch(err){
-        res.status(400).send({msg:err})
+        return res.status(400).send({msg:err})
     }        
 })
 
@@ -69,13 +69,11 @@ router.post('/create-event', async (req, res) => {
             resource: event,
         });
         console.log('event created', result.data.htmlLink) 
-        res.status(201).send({msg: 'Event created'})
+        return res.status(201).send({msg: 'Event created'})
     } catch {
         console.log('There was an error contacting the Calendar service: ' + err);
-        res.status(500).send({msg: 'Error creating event'})
+        return res.status(500).send({msg: 'Error creating event'})
     }
-
-    res.status(201).send({msg:'event created'})
 });
 
 module.exports = router;
