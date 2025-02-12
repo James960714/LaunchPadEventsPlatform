@@ -6,6 +6,24 @@ This project is a web application for; users to browse events, sign up to them a
 
 **And see here for the live website: https://selectevents.netlify.app**
 
+# Test it out:
+
+Test Accounts: 
+
+    Head Account:
+        email: admintest@admin.com 
+        password: testp1
+
+    Staff Account:
+        email: teststaff1@admin.com 
+        password: testp1
+        
+    Test User Account:
+        email: testUserAccount@email.com
+        password: testPassword1
+
+For a test user account you can also use the create account functionality on the website.
+
 # Backend (Express)
 - RESTful API for event management.
 - Event creation, retrieval, and validation for duplicate events.
