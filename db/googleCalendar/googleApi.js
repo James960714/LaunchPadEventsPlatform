@@ -56,6 +56,7 @@ router.post('/create-event', async (req, res) => {
     try {
         const start = moment.tz(startDateTime, 'Europe/London').format()
         const end = moment.tz(endDateTime, 'Europe/London').format()
+        console.log(start, end)
         const event = {
             summary,
             description,
