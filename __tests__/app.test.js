@@ -340,7 +340,6 @@ describe("POST /events/event", () => {
         .send(parsedNewEvent)
         .expect(201)
         .then(({body}) => {
-            console.log(body)
             const postedEvent = {
                 ...body.postedEvent,
                 startDateTime: new Date(body.postedEvent.startDateTime),

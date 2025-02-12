@@ -33,7 +33,7 @@ exports.addToAttendees = (_id, body) => {
 }
 
 exports.createNewEvent = (newEvent) => {
-    
+    console.log('this happens')
     return Event.create(newEvent)
     .then((response) => {
         return response
